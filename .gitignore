@@ -1,0 +1,30 @@
+# Gradle
+.gradle/
+build/
+out/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# Forge run directory
+run/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / crash output
+*.log
+crash-reports/
