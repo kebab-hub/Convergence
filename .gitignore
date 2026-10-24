@@ -20,6 +20,11 @@ bin/
 
 # Forge run directory
 run/
+run-server/
+run-data/
+run-gametest/
+src/generated/resources/.cache/
+repo/
 
 # OS
 .DS_Store

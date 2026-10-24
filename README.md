@@ -10,8 +10,8 @@ dimensional engineering, stellar engineering, antimatter and reality engineering
 
 **Milestone 0 — Foundation**
 
-The current branch contains the initial Forge project skeleton and design documentation.
-The next technical step is to add the official Forge MDK Gradle wrapper and verify a clean Java 17 build.
+The foundation uses the official Forge 43.5.2 MDK wrapper, typed deferred registration,
+data-generation hooks, and Java 17 CI. See the roadmap for verified milestones.
 
 ## Documentation
 
@@ -28,3 +28,24 @@ The next technical step is to add the official Forge MDK Gradle wrapper and veri
 - Forge 43.5.2
 - Java 17
 - Mod ID: `convergence`
+
+## Build and run
+
+Install a **64-bit Java 17 JDK** and point `JAVA_HOME` to it. The wrapper downloads Gradle
+8.8 and Forge dependencies on the first build; no global Gradle installation is needed.
+
+```sh
+./gradlew build
+./gradlew runData
+./gradlew runGameTestServer
+./gradlew runClient
+```
+
+On Windows PowerShell, use `./gradlew.bat` instead. The mod jar is written to `build/libs/`.
+Generated resources are committed; run data generation and include its output when changing providers.
+`runClient` needs a graphical desktop. `runServer` uses `run-server/` and requires the operator
+to accept Minecraft's EULA before hosting a normal world. The automated GameTest server runs
+isolated tests in `run-gametest/`; test classes and structures are not shipped in the mod jar.
+
+The wrapper comes from the [official Forge 1.19.2 MDK](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.19.2.html).
+See [Forge's Java 17 setup guide](https://docs.minecraftforge.net/en/1.19.2/gettingstarted/).

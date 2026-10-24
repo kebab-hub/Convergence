@@ -6,12 +6,20 @@ Goal: a clean Forge 1.19.2 project that builds and launches.
 - [x] Establish project vision and engineering rules.
 - [x] Add initial Gradle/Forge project files.
 - [x] Add minimal mod entrypoint.
-- [ ] Add Gradle wrapper from the official Forge MDK.
-- [ ] Confirm `gradlew build` succeeds on Java 17.
-- [ ] Confirm `gradlew runClient` starts a Forge development client.
-- [ ] Confirm dedicated-server startup does not load client-only classes.
-- [ ] Add basic registration helpers.
-- [ ] Add GitHub Actions build validation.
+- [x] Add Gradle wrapper from the official Forge MDK.
+- [x] Confirm `gradlew build` succeeds on Java 17.
+- [x] Confirm `gradlew runClient` starts a Forge development client.
+- [x] Confirm dedicated-server startup does not load client-only classes.
+- [x] Add basic registration helpers.
+- [x] Add GitHub Actions build validation.
+- [x] Prepare and run data generation.
+
+Validated on 2026-10-24 with 64-bit Temurin 17, Gradle 8.8, ForgeGradle 6.0.42,
+and Forge 43.5.2. `build`, `runData`, and `runGameTestServer` passed; the server smoke
+test verifies the initialized mod on `Dist.DEDICATED_SERVER`. `runClient` reached the
+Forge main menu with Convergence loaded. CI is configured to repeat build, server tests,
+and generated-data checks. ForgeGradle emits Gradle 9 deprecation warnings; this project
+intentionally uses the MDK's supported Gradle 8.8 wrapper.
 
 ## Milestone 1 — First Vertical Slice
 Goal: prove the machine/recipe/data model before scaling content.
