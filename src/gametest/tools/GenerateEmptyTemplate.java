@@ -17,7 +17,7 @@ public final class GenerateEmptyTemplate {
     private static final int DATA_VERSION = 3120;
 
     public static void main(String[] args) throws IOException {
-        Path output = Path.of("src/gametest/resources/data/convergence/structures/empty.nbt");
+        Path output = Path.of("src/gametest/resources/data/subspace/structures/empty.nbt");
         Files.createDirectories(output.getParent());
         try (DataOutputStream nbt = new DataOutputStream(
                 new GZIPOutputStream(Files.newOutputStream(output)))) {

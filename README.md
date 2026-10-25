@@ -1,17 +1,31 @@
-# Convergence
+# Subspace Engineering
 
-Convergence is a large-scale techno-magical progression mod for **Minecraft 1.19.2 Forge**.
-
-The project starts with grounded mechanical and electrical engineering and is intended to progress through
-industrial chemistry, nuclear technology, Aether engineering, automation, fusion, quantum systems,
-dimensional engineering, stellar engineering, antimatter and reality engineering.
+Subspace Engineering is a compact systems mod for **Minecraft 1.19.2, Forge, and Java 17**.
+Discover and engineer an invisible subspace layer to connect remote blocks, transport capabilities,
+create pocket spaces, and fold distance.
 
 ## Status
 
-**Milestone 0 — Foundation**
+**Design and bootstrap only. No gameplay is implemented.** This repository replaces the former
+Convergence project; its crusher, progression, assets, and integration code have been retired.
+The retained infrastructure is a minimal Forge entrypoint, empty deferred registries, a data-generation
+hook, Gradle wrapper, dedicated-server bootstrap test, and CI.
 
-The foundation uses the official Forge 43.5.2 MDK wrapper, typed deferred registration,
-data-generation hooks, and Java 17 CI. See the roadmap for verified milestones.
+Planned mechanics:
+
+1. **Subspace Interfaces** — configurable endpoints for remote capability access.
+2. **Subspace Networks** — shared addressing, routing, and access rules.
+3. **Bandwidth / Stability** — visible limits and predictable operating conditions.
+4. **Pocket Spaces** — bounded spaces with persistent identity and safe entry/return.
+5. **Spatial Folding / Portals** — controlled links that shorten travel.
+6. **Create integration** — optional mechanical and factory interoperability.
+7. **AE2 integration** — optional storage and automation interoperability.
+8. **Mekanism integration** — optional resource and machine interoperability.
+9. **IC2 Classic integration** — optional electrical interoperability.
+
+Implementation will favor reusable systems and capability adapters over bespoke machine classes.
+Integrations are optional and currently have no dependencies in the build. Each future visible block
+or item must arrive with its actual 32×32 Minecraft textures and models in the same change.
 
 ## Documentation
 
@@ -20,32 +34,36 @@ data-generation hooks, and Java 17 CI. See the roadmap for verified milestones.
 - [Architecture](docs/ARCHITECTURE.md)
 - [Integrations](docs/INTEGRATIONS.md)
 - [Roadmap](docs/ROADMAP.md)
+- [Art style and asset delivery](docs/ART_STYLE.md)
 - [Agent rules](AGENTS.md)
 
 ## Development baseline
 
-- Minecraft 1.19.2
-- Forge 43.5.2
-- Java 17
-- Mod ID: `convergence`
+| Setting | Value |
+| --- | --- |
+| Minecraft | 1.19.2 |
+| Forge | 43.5.2 |
+| Java | 17 (64-bit JDK) |
+| Mod ID / asset namespace | `subspace` |
+| Base package / Maven group | `io.github.kebab_hub.subspace` |
+| Gradle / ForgeGradle | 8.8 / 6.0.42 |
 
 ## Build and run
 
-Install a **64-bit Java 17 JDK** and point `JAVA_HOME` to it. The wrapper downloads Gradle
-8.8 and Forge dependencies on the first build; no global Gradle installation is needed.
+Set `JAVA_HOME` to a 64-bit Java 17 JDK. Run commands from the directory containing `build.gradle`.
+The wrapper downloads Gradle and Forge dependencies on first use.
 
 ```sh
 ./gradlew build
-./gradlew runData
 ./gradlew runGameTestServer
+./gradlew runData
 ./gradlew runClient
 ```
 
-On Windows PowerShell, use `./gradlew.bat` instead. The mod jar is written to `build/libs/`.
-Generated resources are committed; run data generation and include its output when changing providers.
-`runClient` needs a graphical desktop. `runServer` uses `run-server/` and requires the operator
-to accept Minecraft's EULA before hosting a normal world. The automated GameTest server runs
-isolated tests in `run-gametest/`; test classes and structures are not shipped in the mod jar.
+Use `./gradlew.bat` on Windows PowerShell. The jar is written to `build/libs/subspace-<version>.jar`.
+`runData` currently has no content providers; future generated resources belong in `src/generated/resources`
+and must be committed. GameTests live in `src/gametest` and are excluded from the shipped jar.
+`runClient` requires a graphical desktop. `runServer` uses `run-server/` and requires the operator to
+accept Minecraft's EULA before hosting. GameTests use a separate `run-gametest/` directory.
 
-The wrapper comes from the [official Forge 1.19.2 MDK](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.19.2.html).
-See [Forge's Java 17 setup guide](https://docs.minecraftforge.net/en/1.19.2/gettingstarted/).
+Use a new development world for this restart. There is no migration of Convergence registry IDs or saves.

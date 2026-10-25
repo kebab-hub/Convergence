@@ -1,6 +1,6 @@
-package io.github.kebab_hub.convergence.gametest;
+package io.github.kebab_hub.subspace.gametest;
 
-import io.github.kebab_hub.convergence.Convergence;
+import io.github.kebab_hub.subspace.Subspace;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraftforge.api.distmarker.Dist;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.gametest.GameTestHolder;
 import net.minecraftforge.gametest.PrefixGameTestTemplate;
 
-@GameTestHolder(Convergence.MOD_ID)
+@GameTestHolder(Subspace.MOD_ID)
 @PrefixGameTestTemplate(false)
 public final class BootstrapGameTests {
     @GameTest(template = "empty")
@@ -17,10 +17,10 @@ public final class BootstrapGameTests {
         if (FMLEnvironment.dist != Dist.DEDICATED_SERVER) {
             helper.fail("Bootstrap smoke test must run on a dedicated server");
         }
-        if (ModList.get().getModContainerById(Convergence.MOD_ID)
-                        .filter(container -> container.getMod() instanceof Convergence)
+        if (ModList.get().getModContainerById(Subspace.MOD_ID)
+                        .filter(container -> container.getMod() instanceof Subspace)
                         .isEmpty()) {
-            helper.fail("Convergence mod container must hold the initialized entrypoint");
+            helper.fail("Subspace mod container must hold the initialized entrypoint");
         }
         helper.succeed();
     }

@@ -1,59 +1,68 @@
-# Progression Overview
+# Subspace Engineering — Progression
 
-This document is intentionally high level. Exact recipes, timings, power values and gating rules will be
-balanced later.
+All stages below are planned. This reset adds no gameplay, recipes, research tree, or progression gates.
+Progression should teach one shared system at a time and expand what players can connect or build.
+It should remain compact and playable with vanilla Minecraft and Forge alone.
 
-## Tier 0 — Primitive Engineering
-Manual ore processing, casting, primitive alloys, plates, rods, wire, gears, bearings and simple workshops.
+## 1. Discover the layer
 
-## Tier 1 — Mechanical Age
-Mechanical factories, rotational power, presses, mills, mixers, pumps, conveyors and early steelmaking.
-Create integration belongs here when installed.
+Introduce evidence of subspace and a readable way to identify potential connections. The exact discovery
+method and first crafting ingredients are undecided. Use accessible vanilla resources where practical;
+do not begin by rebuilding an industrial material chain.
 
-## Tier 2 — Electrical Age
-Generators, motors, dynamos, cables, voltage tiers, electric furnaces, maceration, compression and early automation.
-IC2 Classic integration belongs here when installed.
+Player outcome: understand that subspace links real endpoints and has measurable limits.
 
-## Tier 3 — Industrial Chemistry
-Chemical reactors, distillation, electrolysis, gas separation, cracking, vacuum processing and realistic material chains.
+## 2. Connect remote blocks
 
-## Tier 4 — Advanced Materials
-Titanium, tungsten, chromium, vanadium alloys, technical ceramics, high-purity silicon and precision manufacturing.
+Introduce a small interface-and-link slice using item transport first. Teach endpoint selection, direction,
+access, and connection status with two ordinary inventories. A full or unavailable destination must be
+visible to the player and leave resources accounted for.
 
-## Tier 5 — Atomic Age
-Isotope separation, fuel fabrication, fission, breeders, reprocessing, shielding and radiation management.
+Player outcome: build a useful remote connection and understand why it may pause.
 
-## Tier 6 — Aether Discovery
-Experimental apparatus reveals the Aether field. First collectors, resonators, condensers, crystals and storage appear.
+## 3. Engineer a network
 
-## Tier 7 — Arcane Industry
-Aether becomes an industrial process input. Resonant alloys, runic logic, aether furnaces, infusers and stabilizers.
+Expand the same interfaces into explicit network membership, routing, filters, and a shared bandwidth
+budget. Add fluid and energy transport through reusable capability adapters as their semantics are
+validated. Stability makes network or spatial load a deliberate constraint; its exact cost model remains
+to be designed. Overload should be legible and recoverable, with throttling or suspension preferred to
+unannounced destructive effects.
 
-## Tier 8 — Information Age
-Large-scale automation and computation. AE2 integration becomes extremely valuable here.
-Late recipes should be impractical to manage manually but still technically understandable.
+Player outcome: improve capacity and reliability through configuration and infrastructure while retaining
+the original interfaces.
 
-## Tier 9 — Superconducting Age
-Cryogenics, superconductors, graphene, semiconductor fabrication, advanced lithography and nanofabrication.
+## 4. Create pocket spaces
 
-## Tier 10 — Fusion Age
-Deuterium/tritium processing, plasma systems, magnetic confinement, tritium breeding and large fusion reactors.
+Introduce bounded spaces with anchors, persistent ownership, safe access, and a way back. Their connections
+reuse network permissions and capacity accounting. Space allocation, unloaded behavior, and the consequences
+of removing an anchor must be resolved before pockets become available to players.
 
-## Tier 11 — Quantum Age
-Particle accelerators, entanglement, quantum computation, exotic matter and probability stabilization.
+Player outcome: arrange a compact remote workspace with predictable access and resource connections.
 
-## Tier 12 — Dimensional Engineering
-Spatial compression, dimensional anchors, pocket dimensions, void extraction and factory-space engineering.
+## 5. Fold distance
 
-## Tier 13 — Stellar Engineering
-Artificial stellar systems, stellar plasma, extreme-density materials and Stellar Forge infrastructure.
+Introduce paired spatial endpoints and portals after safe destination validation and recovery are proven.
+Distance folding extends the same identity, access, bandwidth, and stability systems; it should not become
+a separate progression tree. Cross-dimension travel, entities other than players, and chunk loading require
+explicit scope decisions rather than being implicit features of the first portal.
 
-## Tier 14 — Antimatter
-Antiparticle production, antimatter synthesis, containment and extremely high-energy processes.
+Player outcome: connect useful places without bypassing permissions or stranding travelers.
 
-## Tier 15 — Reality Engineering
-Matter scanning, information-defined materials, matter compilation and controlled conversion between
-matter, energy, Aether and information.
+## Optional integration paths
 
-## Tier 16 — Convergence
-All major systems combine in the Convergence Engine and Genesis-scale technology.
+Create, AE2, Mekanism, and IC2 Classic can connect existing factory workflows at the stages where their
+adapters make sense. They are parallel options, not successive tiers or required dependencies. Each must
+preserve its host mod's resource and network rules. See [Integrations](INTEGRATIONS.md).
+
+## Balancing and delivery rules
+
+- Gate new abilities through understood constraints and small, useful builds rather than bulk resource grind.
+- Keep early endpoints useful; avoid replacing every block at each stage.
+- Store tunable recipes and values in data or named configuration where appropriate.
+- Validate the standalone route before adding optional recipes or integration-specific rewards.
+- Define costs, failure behavior, and recovery alongside each new transport or spatial ability.
+- Deliver actual 32×32 Minecraft textures and complete model assets with every new visible block or item,
+  following [Art Style](ART_STYLE.md).
+
+The [Roadmap](ROADMAP.md) defines implementation slices. Stage order describes the intended learning path,
+not a commitment to fixed tiers, recipe quantities, or playtime.

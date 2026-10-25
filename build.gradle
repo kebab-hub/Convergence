@@ -37,7 +37,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
 
             mods {
-                convergence {
+                subspace {
                     source sourceSets.main
                 }
             }
@@ -50,7 +50,7 @@ minecraft {
             args '--nogui'
 
             mods {
-                convergence {
+                subspace {
                     source sourceSets.main
                 }
             }
@@ -61,7 +61,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', mod_id
             property 'forge.logging.console.level', 'info'
             mods {
-                convergence {
+                subspace {
                     source sourceSets.main
                     source sourceSets.gametest
                 }
@@ -75,7 +75,7 @@ minecraft {
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                convergence {
+                subspace {
                     source sourceSets.main
                 }
             }
@@ -83,10 +83,9 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
-
-repositories {
-    // Add repositories for optional integrations only when their implementation begins.
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    exclude '.cache/**'
 }
 
 dependencies {
@@ -95,6 +94,7 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
+    options.compilerArgs.add '-Xlint:deprecation'
 }
 
 tasks.named('processResources', ProcessResources).configure {

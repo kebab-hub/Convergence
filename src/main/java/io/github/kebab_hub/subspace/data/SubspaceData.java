@@ -1,4 +1,4 @@
-package io.github.kebab_hub.convergence.data;
+package io.github.kebab_hub.subspace.data;
 
 import net.minecraftforge.data.event.GatherDataEvent;
 
@@ -8,8 +8,8 @@ import net.minecraftforge.data.event.GatherDataEvent;
  * the requested output. Providers write to src/generated/resources; their
  * output is committed and packaged with the hand-authored resources.
  */
-public final class ConvergenceData {
-    private ConvergenceData() {
+public final class SubspaceData {
+    private SubspaceData() {
     }
 
     public static void gatherData(GatherDataEvent event) {

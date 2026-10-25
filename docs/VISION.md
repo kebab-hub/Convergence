@@ -1,51 +1,53 @@
-# Convergence — Vision
+# Subspace Engineering — Vision
 
-## Core fantasy
-Convergence begins as grounded engineering and ends with the player manipulating matter, energy,
-information, dimensions, stars, and reality itself.
+Subspace Engineering is a compact systems mod about discovering and engineering an invisible
+subspace layer. Players use it to connect remote blocks, transport capabilities, create pocket
+spaces, and fold distance. A small set of composable tools should produce many useful factory
+layouts and spatial experiments.
 
-The intended progression is roughly:
+The target is **Minecraft 1.19.2, Forge, and Java 17**, with mod ID `subspace` and base package
+`io.github.kebab_hub.subspace`. This repository reset establishes the direction and a minimal
+development foundation. Every gameplay mechanic below is planned, not implemented.
 
-Primitive Engineering → Mechanical Age → Electrical Age → Industrial Chemistry → Advanced Materials →
-Atomic Age → Aether Discovery → Arcane Industry → Information Age → Superconducting Age → Fusion Age →
-Quantum Age → Dimensional Engineering → Stellar Engineering → Antimatter → Reality Engineering → Convergence.
+## Core planned mechanics
 
-## Fundamental systems
-The project is built around several interacting resources and process constraints:
-
-- **SU** — mechanical power (Create compatibility).
-- **EU / electrical power** — electricity and voltage-tier infrastructure.
-- **Aether** — Convergence's original techno-magical field/energy.
-- **Data** — computation and information throughput.
-- **Heat** — process temperature.
-- **Pressure / Vacuum** — environmental process requirements.
-- **Radiation** — nuclear hazard and process state.
-- **Purity** — material quality.
-- **Stability** — late-game aether/quantum/dimensional process requirement.
-
-Late-game machines should combine several of these instead of relying on a single generic power bar.
+| Mechanic | Intended role |
+| --- | --- |
+| Subspace Interfaces | Attach to ordinary blocks and expose selected capabilities through controlled remote endpoints. |
+| Subspace Networks | Link interfaces into persistent, inspectable networks with explicit membership and access rules. |
+| Bandwidth / Stability | Limit useful throughput and spatial load; give players readable reasons to improve their infrastructure. |
+| Pocket Spaces | Provide bounded, persistent spaces anchored to the world and connected through the same network systems. |
+| Spatial Folding / Portals | Connect distant locations through deliberate, safe entry and exit points. |
+| Create integration | Connect factory logistics and explore kinetic interaction through an isolated optional adapter. |
+| AE2 integration | Connect storage and automation workflows while respecting AE2's own network rules. |
+| Mekanism integration | Bridge supported logistics capabilities, with specialized resources handled only by explicit adapters. |
+| IC2 Classic integration | Support selected electrical and automation interactions without assuming EU and Forge Energy are interchangeable. |
 
 ## Design principles
-1. **Composition over replacement.** Old technology remains relevant.
-2. **Automation is progression.** AE2 should become the nervous system of a mature factory.
-3. **Complexity comes from process chains.** Crushing, washing, separation, chemistry, refining,
-   fabrication, stabilization, assembly, and computation matter more than raw grind.
-4. **Techno-magic is engineering.** Aether is treated as a measurable physical field with machinery,
-   resonators, storage, frequencies, stability, and industrial applications.
-5. **Large machines are infrastructure.** Multiblocks should feel like facilities, not decorative cubes.
-6. **Optional integrations are meaningful.** Create, AE2, IC2 Classic and others should unlock alternate
-   or enhanced processes without making the base mod fail to load when absent.
-7. **Endgame is transformative.** The final rewards should change what the player can build and control,
-   not merely provide a stronger sword.
 
-## Scope target
-Long-term target, not Milestone 0:
+- **Compact content, broad combinations.** Add a block or item only when it provides a distinct player action.
+  Extend shared systems before adding another machine with nearly identical behavior.
+- **Capability-based engineering.** Reuse inventory, fluid, energy, and other supported capability contracts.
+  Optional adapters extend those contracts where needed; every resource does not need a bespoke machine.
+- **Readable constraints.** Show connectivity, available bandwidth, stability, and blocked-transfer reasons.
+  Capacity limits should invite engineering decisions rather than unexplained failure.
+- **Useful early tools.** The first interfaces remain useful as networks grow and spatial features arrive.
+- **Standalone progression.** The base mod must work without any integration mod. Integrations provide useful
+  alternatives and deeper interoperability, never a mandatory progression gate.
+- **Conservative transport.** Moving a resource must not duplicate it or silently destroy it. Unloaded endpoints,
+  severed links, full destinations, and permission changes are normal cases that systems must handle.
 
-- 16+ progression eras.
-- 80+ ordinary machines.
-- 30+ multiblock machines.
-- 100+ materials and alloys.
-- 50+ fluids/gases.
-- 150–250 research entries.
-- 1000+ recipes plus optional integration recipes.
-- A normal full progression measured in roughly 100–200 hours, depending on automation and pack balance.
+## Scope boundaries
+
+The project is not a broad industrial progression overhaul. It does not need an ore-processing tree,
+dozens of material tiers, a catalogue of unique machines, or a replacement for each integrated mod.
+Exact recipes, capacity values, energy costs, discovery method, and spatial limits remain design decisions
+for their own implementation slices.
+
+The visual identity is industrial science fiction: dark frames, copper and brass mechanics, cyan controls,
+and violet or magenta subspace energy around luminous crystalline cores. Follow [Art Style](ART_STYLE.md).
+Every future visible block or item must arrive with its actual Minecraft 32×32 pixel textures and model
+assets in the same task; useful physical depth should come from JSON model geometry.
+
+See [Progression](PROGRESSION.md), [Architecture](ARCHITECTURE.md), [Integrations](INTEGRATIONS.md), and
+[Roadmap](ROADMAP.md) for the planned path from this foundation.
