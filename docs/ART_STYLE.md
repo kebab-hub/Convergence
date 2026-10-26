@@ -7,8 +7,10 @@ precise copper/brass hardware, cyan control electronics, and vivid violet/magent
 crystalline cores. Aim for the finish and readability of a high-end Minecraft tech mod while making
 original assets with a consistent identity.
 
-All block and item textures use **32×32 Minecraft pixel art**. This document is a production contract;
-the bootstrap adds no visible content and needs no demonstration blocks, items, or placeholder art.
+All block and item textures use **32×32 Minecraft pixel art**. The foundation includes an original
+32×32 creative-tab emblem and its GUI atlas, with no demonstration blocks or items. GUI atlases may
+be larger to fit native Minecraft layouts; the 512×512 tab atlas preserves the emblem at 32×32 pixels.
+See [Asset Sources](ASSET_SOURCES.md) for provenance and reproduction instructions.
 
 ## Palette and material roles
 

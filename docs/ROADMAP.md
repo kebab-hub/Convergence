@@ -9,17 +9,22 @@ does not count as validation of the systems below.
 - Establish the Subspace Engineering identity: Minecraft 1.19.2, Forge, Java 17, mod ID `subspace`,
   base package `io.github.kebab_hub.subspace`.
 - Replace the old gameplay direction with the compact systems design in these documents.
-- Retain a minimal build, bootstrap, data-generation hook, and dedicated-server smoke-test scaffold.
+- Provide a minimal build and entrypoint, a custom creative tab, empty typed block/item/block-entity/menu
+  registries, language data generation, and a dedicated-server smoke-test scaffold.
 - Establish reusable capability-based architecture and the [Art Style](ART_STYLE.md) asset requirement.
 - Add no gameplay in this reset. Record actual build and smoke-test results with the change that runs them.
 
-### Bootstrap validation — 2026-10-26
+The creative tab is intentionally empty. Its original 32×32 emblem is embedded in the native tab atlas,
+so the foundation adds no registered content just to supply an icon. The mod version is `0.0.2`.
 
-With Java 17, `clean build runData runGameTestServer` passed using the cached dependencies.
-The single dedicated-server bootstrap test passed under `subspace`; data generation has no content
-providers yet. The packaged jar contains only the three bootstrap classes and metadata, with no
-legacy gameplay, optional integrations, or test resources. Documentation links and whitespace checks
-passed. No client launch or gameplay validation is claimed for this reset.
+### Foundation validation — 2026-10-26
+
+Java 17 `runData` and a subsequent `clean build` passed, including `reobfJar` and compilation of the
+existing GameTest source set. The release artifact is `subspace-0.0.2.jar`. Its metadata, Java 17
+bytecode, generated English label, and both GUI textures were checked; test resources and tooling
+are excluded. Documentation links and whitespace checks passed. The source emblem and tab atlas
+were inspected as image files. No Minecraft client or gameplay server was launched; the owner should
+manually check the empty creative tab's name, artwork, selection states, and tab-page placements.
 
 ## 1. First interface slice — Planned
 

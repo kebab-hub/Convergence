@@ -11,6 +11,24 @@ Retain the generic Gradle wrapper, Forge run configurations, resource processing
 hooks, and isolated GameTest setup. Register content only when its feature is implemented.
 The previous mod's machines, recipes, materials, and progression are not a foundation for this design.
 
+### Implemented foundation
+
+`Subspace` attaches `ModRegistries` and `SubspaceData` to the mod event bus. `ModRegistries` owns typed
+`DeferredRegister` instances for blocks, items, block entities, and menus; all four are empty. Its `TAB`
+is constructed when the entrypoint initializes that class, so it exists even before content is added.
+Future items can use `Item.Properties.tab(ModRegistries.TAB)` without separate tab-population logic.
+
+Forge 1.19.2 constructs creative tabs directly. The tab uses the native `getTabsImage()` hook with an
+original atlas containing its emblem in all top/bottom and selected/unselected cells. `makeIcon()`
+returns an empty stack: no fake icon item is registered. The native creative inventory supports this;
+third-party UIs that only query the tab's icon stack will see an empty stack. The vanilla inventory
+panel is retained, and no custom renderer or client-only bootstrap is required.
+
+`SubspaceLanguageProvider` generates `itemGroup.subspace` in `en_us.json` when client data is requested.
+Server data has no providers until a feature needs recipes, tags, or loot. Generated JSON is committed;
+original GUI PNGs live under `src/main/resources/assets/subspace`. See [Asset Sources](ASSET_SOURCES.md)
+for the reproducible atlas tool. This foundation does not implement any of the systems below.
+
 ## Composition before machine classes
 
 Subspace Engineering is a small collection of cooperating systems. A visible device configures and
