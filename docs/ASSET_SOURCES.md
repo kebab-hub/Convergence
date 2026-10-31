@@ -1,5 +1,22 @@
 # Asset Sources
 
+## First five components — 2026-10-31
+
+- **Origin:** Five original sprites made with the built-in image-generation tool, one call per item.
+  No external images or copied mod/vanilla textures were supplied. The full prompt set is saved in
+  [`art/components/prompts.json`](art/components/prompts.json).
+- **Sources:** `art/components/<item_id>_source.png` contains each selected original: `phase_crystal`,
+  `stabilized_phase_crystal`, `resonance_coil`, `phase_alloy_ingot`, and `phase_alloy_plate`.
+  Crystal/coil source canvases are 1254×1254; alloy sources are 1536×1024. Original alpha is retained in
+  these source files; they are documentation assets and are not packaged in the mod JAR.
+- **Finished assets:** `src/main/resources/assets/subspace/textures/item/<item_id>.png`, exactly 32×32.
+  [`convert_component_textures.py`](../tools/assets/convert_component_textures.py) preserves the source
+  silhouette and aspect ratio, fits it within 28 pixels, uses nearest-neighbor sampling, maps colors to
+  `palette.json`, and thresholds alpha at 128. No smoothing, dithering, or procedural replacement art.
+- **Inspection:** The finished sprites were inspected on dark and light inventory backgrounds, enlarged
+  with nearest-neighbor scaling and at native 32×32 / reduced 16×16 sizes. In-game testing remains with
+  the project owner. See [Components](COMPONENTS.md) for generation commands, IDs, recipes, and checks.
+
 ## Decorative test casing and spark — 2026-10-31
 
 - **Reference:** [subspace_test_casing_reference.png](art/subspace_test_casing_reference.png), original

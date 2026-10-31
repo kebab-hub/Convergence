@@ -1,4 +1,9 @@
 {
   "block.subspace.subspace_test_casing": "Subspace Test Casing",
+  "item.subspace.phase_alloy_ingot": "Phase Alloy Ingot",
+  "item.subspace.phase_alloy_plate": "Phase Alloy Plate",
+  "item.subspace.phase_crystal": "Phase Crystal",
+  "item.subspace.resonance_coil": "Resonance Coil",
+  "item.subspace.stabilized_phase_crystal": "Stabilized Phase Crystal",
   "itemGroup.subspace": "Subspace Engineering"
 }

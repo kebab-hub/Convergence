@@ -15,5 +15,11 @@ public final class SubspaceData {
     public static void gatherData(GatherDataEvent event) {
         event.getGenerator().addProvider(event.includeClient(),
                 new SubspaceLanguageProvider(event.getGenerator()));
+        event.getGenerator().addProvider(event.includeClient(),
+                new SubspaceItemModelProvider(event.getGenerator(), event.getExistingFileHelper()));
+        event.getGenerator().addProvider(event.includeServer(),
+                new SubspaceRecipeProvider(event.getGenerator()));
+        event.getGenerator().addProvider(event.includeServer(),
+                new SubspaceItemTagProvider(event.getGenerator(), event.getExistingFileHelper()));
     }
 }

@@ -53,7 +53,17 @@ public final class ModRegistries {
     public static final RegistryObject<Item> SUBSPACE_TEST_CASING_ITEM = ITEMS.register("subspace_test_casing",
             () -> new BlockItem(SUBSPACE_TEST_CASING.get(), new Item.Properties().tab(TAB)));
 
+    public static final RegistryObject<Item> PHASE_CRYSTAL = component("phase_crystal");
+    public static final RegistryObject<Item> STABILIZED_PHASE_CRYSTAL = component("stabilized_phase_crystal");
+    public static final RegistryObject<Item> RESONANCE_COIL = component("resonance_coil");
+    public static final RegistryObject<Item> PHASE_ALLOY_INGOT = component("phase_alloy_ingot");
+    public static final RegistryObject<Item> PHASE_ALLOY_PLATE = component("phase_alloy_plate");
+
     private ModRegistries() {
+    }
+
+    private static RegistryObject<Item> component(String name) {
+        return ITEMS.register(name, () -> new Item(new Item.Properties().tab(TAB)));
     }
 
     public static void register(IEventBus modBus) {

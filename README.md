@@ -6,12 +6,14 @@ create pocket spaces, and fold distance.
 
 ## Status
 
-**Foundation and visual asset pipeline. No subspace mechanics are implemented.** This repository replaces the former
+**Foundation, visual assets, and five craftable components. No subspace mechanics are implemented.** This repository replaces the former
 Convergence project; its crusher, progression, assets, and integration code have been retired.
 The foundation includes typed registries, a creative tab, language data generation, the Gradle wrapper,
 and CI. One decorative block, `subspace_test_casing`, demonstrates finished 32×32 textures, a recessed
 model, and an animated emissive crystal. A command-testable spark demonstrates particle registration.
-There are no machines, recipes, block entities, menus, automatic particle emitters, or subspace systems.
+Phase Crystal, Stabilized Phase Crystal, Resonance Coil, Phase Alloy Ingot, and Phase Alloy Plate have
+finished item sprites, crafting recipes, and tags. See [Components](docs/COMPONENTS.md) for recipes.
+There are no machines, block entities, menus, automatic particle emitters, or subspace systems.
 
 Planned mechanics:
 
@@ -38,6 +40,7 @@ or item must arrive with its actual 32×32 Minecraft textures and models in the 
 - [Roadmap](docs/ROADMAP.md)
 - [Art style and asset delivery](docs/ART_STYLE.md)
 - [Asset pipeline and validation](docs/ASSET_PIPELINE.md)
+- [Implemented components and crafting](docs/COMPONENTS.md)
 - [Asset sources and tab-atlas generation](docs/ASSET_SOURCES.md)
 - [Agent rules](AGENTS.md)
 
@@ -65,7 +68,8 @@ The wrapper downloads Gradle and Forge dependencies on first use.
 ```
 
 Use `./gradlew.bat` on Windows PowerShell. The jar is written to `build/libs/subspace-<version>.jar`.
-`runData` generates English names into `src/generated/resources`; generated resources
+`runData` generates English names, component item models, recipes, recipe-book advancements, and item tags
+into `src/generated/resources`; generated resources
 must be committed. Run data generation before a separate `build` when changing providers so the jar
 includes the updated output. GameTests live in `src/gametest` and are excluded from the shipped jar.
 `runClient` requires a graphical desktop. `runServer` uses `run-server/` and requires the operator to
@@ -78,7 +82,9 @@ without launching Minecraft. See the asset pipeline guide for optional Python au
 
 ## Manual visual check
 
-Install `subspace-0.0.3.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Get the casing from the
+Install `subspace-0.0.4.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Check the five components'
+inventory/held/dropped sprites and craft each recipe in [Components](docs/COMPONENTS.md).
+Get the casing from the
 Subspace Engineering tab or `/give @s subspace:subspace_test_casing`. Check its four orientations, model
 depth, slow crystal pulse, nighttime glow, item model, and pickaxe drop. Test the reference spark with
 `/particle subspace:subspace_spark ~ ~1 ~ 0.2 0.2 0.2 0.02 20 force`. In-game testing is left to the owner.

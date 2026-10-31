@@ -15,6 +15,9 @@ Its constant light level of 7, animated crystal, and horizontal facing are visua
 - [`generate_test_casing.py`](../tools/assets/generate_test_casing.py) is the worked reference. It redraws
   the image-generated concept as native pixels and geometry; it does not shrink a perspective picture
   onto a cube. See [Asset Sources](ASSET_SOURCES.md) for the reference and prompt.
+- [`convert_component_textures.py`](../tools/assets/convert_component_textures.py) converts the five
+  saved component source images into transparent 32×32 palette sprites. See [Components](COMPONENTS.md)
+  for reproduction and data ownership. Component models, recipes, tags, and names are owned by datagen.
 
 Authoring requires Python 3.10+ and the Pillow version in `tools/assets/requirements.txt`. The ordinary
 Gradle build uses the committed PNG/JSON files and does **not** require Python or image generation.

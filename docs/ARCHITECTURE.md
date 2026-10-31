@@ -14,8 +14,9 @@ The previous mod's machines, recipes, materials, and progression are not a found
 ### Implemented foundation
 
 `Subspace` attaches `ModRegistries` and `SubspaceData` to the mod event bus. `ModRegistries` owns typed
-`DeferredRegister` instances for blocks, items, block entities, and menus. The first two register only
-the decorative `subspace_test_casing` and its block item; block entities and menus remain empty. Its `TAB`
+`DeferredRegister` instances for blocks, items, block entities, and menus. Content consists of
+the decorative `subspace_test_casing`, its block item, and five ordinary [components](COMPONENTS.md);
+block entities and menus remain empty. Its `TAB`
 is constructed when the entrypoint initializes that class, so it exists even before content is added.
 Future items can use `Item.Properties.tab(ModRegistries.TAB)` without separate tab-population logic.
 
@@ -25,7 +26,9 @@ returns an empty stack: no fake icon item is registered. The native creative inv
 third-party UIs that only query the tab's icon stack will see an empty stack. The vanilla inventory
 panel is retained, and no custom renderer or client-only bootstrap is required.
 
-`SubspaceLanguageProvider` generates the tab and casing names in `en_us.json` when client data is requested.
+Client data providers generate names and component item models. Server data providers generate the five
+crafting recipes, their recipe-book advancements, and item tags. Component registrations reuse plain
+`Item` instances; they introduce no custom gameplay classes.
 The casing's authored loot, mining tag, model, textures, and blockstate are reproduced by the asset tool.
 `ModParticles` registers the reference spark type; a client-only subscriber registers its sprite factory.
 No code spawns that particle automatically. See [Asset Pipeline](ASSET_PIPELINE.md) for conventions and
