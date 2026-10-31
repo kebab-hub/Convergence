@@ -24,6 +24,7 @@ run-server/
 run-data/
 run-gametest/
 src/generated/resources/.cache/
+__pycache__/
 repo/
 
 # OS

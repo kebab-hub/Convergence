@@ -1,0 +1,25 @@
+GIMP Palette
+Name: Subspace Engineering
+Columns: 7
+# palette.json is authoritative
+ 16  19  25	void
+ 27  32  40	recess
+ 44  52  64	metal
+ 70  82  99	edge
+101 113 132	highlight
+141 156 181	steel_glint
+116  67  43	copper_shadow
+184 117  62	copper
+214 170  89	brass
+255 225 155	brass_glint
+  8 127 152	cyan_shadow
+ 32 206 219	cyan
+164 248 255	cyan_glint
+ 53  19  71	violet_shadow
+ 71  16 120	violet_dark
+100  37 183	violet
+174  63 255	energy
+243  60 207	magenta
+195 115 235	crystal
+234 205 255	crystal_glint
+255 240 255	core_glint

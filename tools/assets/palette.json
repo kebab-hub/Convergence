@@ -1,0 +1,23 @@
+{
+  "void": "#101319",
+  "recess": "#1B2028",
+  "metal": "#2C3440",
+  "edge": "#465263",
+  "highlight": "#657184",
+  "steel_glint": "#8D9CB5",
+  "copper_shadow": "#74432B",
+  "copper": "#B8753E",
+  "brass": "#D6AA59",
+  "brass_glint": "#FFE19B",
+  "cyan_shadow": "#087F98",
+  "cyan": "#20CEDB",
+  "cyan_glint": "#A4F8FF",
+  "violet_shadow": "#351347",
+  "violet_dark": "#471078",
+  "violet": "#6425B7",
+  "energy": "#AE3FFF",
+  "magenta": "#F33CCF",
+  "crystal": "#C373EB",
+  "crystal_glint": "#EACDFF",
+  "core_glint": "#FFF0FF"
+}

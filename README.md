@@ -6,11 +6,12 @@ create pocket spaces, and fold distance.
 
 ## Status
 
-**Design and bootstrap only. No gameplay is implemented.** This repository replaces the former
+**Foundation and visual asset pipeline. No subspace mechanics are implemented.** This repository replaces the former
 Convergence project; its crusher, progression, assets, and integration code have been retired.
-The foundation includes a minimal Forge entrypoint, empty deferred registries for blocks, items,
-block entities, and menus, a creative tab with original artwork, language data generation, the Gradle
-wrapper, a dedicated-server bootstrap test, and CI. No blocks, items, recipes, or mechanics are registered.
+The foundation includes typed registries, a creative tab, language data generation, the Gradle wrapper,
+and CI. One decorative block, `subspace_test_casing`, demonstrates finished 32×32 textures, a recessed
+model, and an animated emissive crystal. A command-testable spark demonstrates particle registration.
+There are no machines, recipes, block entities, menus, automatic particle emitters, or subspace systems.
 
 Planned mechanics:
 
@@ -36,6 +37,7 @@ or item must arrive with its actual 32×32 Minecraft textures and models in the 
 - [Integrations](docs/INTEGRATIONS.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Art style and asset delivery](docs/ART_STYLE.md)
+- [Asset pipeline and validation](docs/ASSET_PIPELINE.md)
 - [Asset sources and tab-atlas generation](docs/ASSET_SOURCES.md)
 - [Agent rules](AGENTS.md)
 
@@ -63,7 +65,7 @@ The wrapper downloads Gradle and Forge dependencies on first use.
 ```
 
 Use `./gradlew.bat` on Windows PowerShell. The jar is written to `build/libs/subspace-<version>.jar`.
-`runData` generates the English creative-tab label into `src/generated/resources`; generated resources
+`runData` generates English names into `src/generated/resources`; generated resources
 must be committed. Run data generation before a separate `build` when changing providers so the jar
 includes the updated output. GameTests live in `src/gametest` and are excluded from the shipped jar.
 `runClient` requires a graphical desktop. `runServer` uses `run-server/` and requires the operator to
@@ -71,9 +73,12 @@ accept Minecraft's EULA before hosting. GameTests use a separate `run-gametest/`
 
 Use a new development world for this restart. There is no migration of Convergence registry IDs or saves.
 
-## Manual foundation check
+`build` includes `validateAssets`, which checks local model/texture references and animation/particle assets
+without launching Minecraft. See the asset pipeline guide for optional Python authoring tools.
 
-Install `subspace-0.0.2.jar` in a Minecraft 1.19.2 / Forge 43.5.2 instance using Java 17. Verify the mod
-appears as Subspace Engineering and the creative inventory has a named tab with a violet crystal emblem.
-The tab is intentionally empty. Check selected/unselected appearances and top/bottom tab positions when
-other mods add creative tabs. No gameplay is expected yet; client testing is left to the project owner.
+## Manual visual check
+
+Install `subspace-0.0.3.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Get the casing from the
+Subspace Engineering tab or `/give @s subspace:subspace_test_casing`. Check its four orientations, model
+depth, slow crystal pulse, nighttime glow, item model, and pickaxe drop. Test the reference spark with
+`/particle subspace:subspace_spark ~ ~1 ~ 0.2 0.2 0.2 0.02 20 force`. In-game testing is left to the owner.

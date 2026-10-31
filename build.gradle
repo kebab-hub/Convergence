@@ -141,3 +141,5 @@ publishing {
         }
     }
 }
+
+apply from: 'gradle/asset-validation.gradle'

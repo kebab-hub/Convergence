@@ -1,5 +1,26 @@
 # Asset Sources
 
+## Decorative test casing and spark — 2026-10-31
+
+- **Reference:** [subspace_test_casing_reference.png](art/subspace_test_casing_reference.png), original
+  art made with the built-in image-generation tool using the [saved prompt](art/subspace_test_casing_prompt.txt).
+  No external images or copied mod textures were supplied.
+- **Conversion:** The reference's dark structural rails, recessed aperture, copper retainers, cyan service
+  indicators, and faceted violet core were redrawn as native pixel clusters in
+  `tools/assets/generate_test_casing.py`. Perspective concept pixels are not pasted onto block faces.
+- **Finished textures:** `src/main/resources/assets/subspace/textures/block/subspace_test_casing_*.png`:
+  side, top, front, and frame are opaque 32×32 PNGs; core is four 32×32 frames in a 32×128 sheet with native
+  `.png.mcmeta`. All colors come from `tools/assets/palette.json`.
+- **Particle:** `textures/particle/subspace_spark.png` under the same asset root is an original 32×32
+  crystalline spark drawn from that palette, with intentional transparent surroundings.
+- **Models:** The authoring script writes the reusable recessed-casing model, concrete block/item models,
+  four facing variants, sprite definition, loot, and mining tag. Geometry uses ten elements, with physical
+  recesses and retainers. Only the crystal face is emissive; the casing also emits a constant light level.
+- **Reproduction:** Follow [Asset Pipeline](ASSET_PIPELINE.md). Finished resources and the full reference
+  are stored in the repository. The tool creates `build/asset-preview.png` for pixel inspection.
+- **Inspection:** Native pixel art and enlarged frames were inspected as files. In-game rendering is
+  reserved for the project owner; no Minecraft client or gameplay server was launched for this task.
+
 ## Native creative-tab atlas
 
 - **File:** `src/main/resources/assets/subspace/textures/gui/creative_tabs.png`

@@ -14,7 +14,8 @@ The previous mod's machines, recipes, materials, and progression are not a found
 ### Implemented foundation
 
 `Subspace` attaches `ModRegistries` and `SubspaceData` to the mod event bus. `ModRegistries` owns typed
-`DeferredRegister` instances for blocks, items, block entities, and menus; all four are empty. Its `TAB`
+`DeferredRegister` instances for blocks, items, block entities, and menus. The first two register only
+the decorative `subspace_test_casing` and its block item; block entities and menus remain empty. Its `TAB`
 is constructed when the entrypoint initializes that class, so it exists even before content is added.
 Future items can use `Item.Properties.tab(ModRegistries.TAB)` without separate tab-population logic.
 
@@ -24,10 +25,11 @@ returns an empty stack: no fake icon item is registered. The native creative inv
 third-party UIs that only query the tab's icon stack will see an empty stack. The vanilla inventory
 panel is retained, and no custom renderer or client-only bootstrap is required.
 
-`SubspaceLanguageProvider` generates `itemGroup.subspace` in `en_us.json` when client data is requested.
-Server data has no providers until a feature needs recipes, tags, or loot. Generated JSON is committed;
-original GUI PNGs live under `src/main/resources/assets/subspace`. See [Asset Sources](ASSET_SOURCES.md)
-for the reproducible atlas tool. This foundation does not implement any of the systems below.
+`SubspaceLanguageProvider` generates the tab and casing names in `en_us.json` when client data is requested.
+The casing's authored loot, mining tag, model, textures, and blockstate are reproduced by the asset tool.
+`ModParticles` registers the reference spark type; a client-only subscriber registers its sprite factory.
+No code spawns that particle automatically. See [Asset Pipeline](ASSET_PIPELINE.md) for conventions and
+file validation. This decorative reference does not implement any of the systems below.
 
 ## Composition before machine classes
 
