@@ -9,8 +9,8 @@ Place the anchor to create an active endpoint. Right-click it to open its status
 
 - **Network address:** the complete UUID, split over two lines for readability.
 - **Status:** `Active / stable` or `Inactive`.
-- **Linked endpoints:** `0`. The Phase Linker currently records block-face addresses only; it does not
-  create links or change this count. Link membership is a later feature.
+- **Linked endpoints:** `0`. The Phase Linker can configure an [Interface](INTERFACE.md)'s direct target,
+  but that creates no anchor membership and does not change this count. Membership is a later feature.
 - **Activate / Deactivate:** changes the local state without changing the address. Inactive anchors
   retain their identity. There is no fuel, power requirement, or redstone control in this slice.
 

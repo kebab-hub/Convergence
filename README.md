@@ -6,7 +6,7 @@ create pocket spaces, and fold distance.
 
 ## Status
 
-**Foundation, five craftable components, a Subspace Detector, Phase Linker, and Subspace Anchor.** This repository replaces the former
+**Foundation, five craftable components, Subspace Detector, Phase Linker, Anchor, and Interface.** This repository replaces the former
 Convergence project; its crusher, progression, assets, and integration code have been retired.
 The foundation includes typed registries, a creative tab, language data generation, the Gradle wrapper,
 and CI. One decorative block, `subspace_test_casing`, demonstrates finished 32×32 textures, a recessed
@@ -20,6 +20,9 @@ without loading chunks; it has a crafting recipe, finished sprite, sound, and se
 The [Subspace Anchor](docs/ANCHOR.md) adds a persistent UUID address, active/inactive state, and a status
 screen with an activation control. Linked endpoint counts remain zero; there are no research systems,
 transport networks, pocket spaces, or portals yet.
+The [Subspace Interface](docs/INTERFACE.md) stores one direct target and probes sided item/fluid/energy
+capabilities through reusable Forge-based services. It reports availability and includes finished state
+models; it exposes no remote handler and transports no resources.
 
 Planned mechanics:
 
@@ -50,6 +53,7 @@ or item must arrive with its actual 32×32 Minecraft textures and models in the 
 - [Subspace Detector](docs/DETECTOR.md)
 - [Phase Linker](docs/PHASE_LINKER.md)
 - [Subspace Anchor](docs/ANCHOR.md)
+- [Subspace Interface](docs/INTERFACE.md)
 - [Asset sources and tab-atlas generation](docs/ASSET_SOURCES.md)
 - [Agent rules](AGENTS.md)
 
@@ -87,14 +91,16 @@ accept Minecraft's EULA before hosting. GameTests use a separate `run-gametest/`
 Use a new development world for this restart. There is no migration of Convergence registry IDs or saves.
 
 `build` includes `validateAssets`, which checks local model/texture references and animation/particle assets
-without launching Minecraft. It also runs `verifyDetectorSignal`, `verifyLinkerSelection`, and
-`verifyAnchorIdentity`, Java checks of ambient readings, endpoint persistence, anchor identity, and UUID
-menu synchronization (including malformed NBT). GameTests are
+without launching Minecraft. It also runs `verifyDetectorSignal`, `verifyLinkerSelection`,
+`verifyAnchorIdentity`, and `verifyDirectLinks`: Java checks of readings, persistence, UUID synchronization,
+and sided capability invalidation/reacquisition without resource operations. GameTests are
 compiled by `build` and require a separate explicit server run. See the asset pipeline guide for optional Python authoring tools.
 
 ## Manual visual check
 
-Install `subspace-0.0.7.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Follow the anchor's
+Install `subspace-0.0.8.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Follow the interface's
+[manual checks](docs/INTERFACE.md#validation-and-owners-in-game-checks) for direct target configuration,
+sided availability, unload/reload, safe failure, no transport, and state models. Follow the anchor's
 [manual checks](docs/ANCHOR.md#owners-in-game-checks) for persistent unique addresses, activation,
 the status screen, copied blocks, and visual effects. Follow the linker's
 [manual checks](docs/PHASE_LINKER.md#owners-in-game-checks) for endpoint selection, status, clearing,

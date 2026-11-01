@@ -4,6 +4,7 @@ All system stages below are planned. The five [first components](COMPONENTS.md) 
 crafting recipes are implemented, along with a [Subspace Detector](DETECTOR.md) for basic ambient readings
 and a [Phase Linker](PHASE_LINKER.md) for selecting two endpoint addresses and checking their availability.
 The [Subspace Anchor](ANCHOR.md) provides a persistent local UUID endpoint with an activation/status screen.
+The [Subspace Interface](INTERFACE.md) can retain one direct target and report standard Forge capability availability.
 They do not yet unlock transport/spatial abilities or a research tree.
 Progression should teach one shared system at a time and expand what players can connect or build.
 It should remain compact and playable with vanilla Minecraft and Forge alone.
@@ -11,7 +12,7 @@ It should remain compact and playable with vanilla Minecraft and Forge alone.
 ## 1. Discover the layer
 
 The detector introduces background subspace activity through a simple reading. Identifying potential
-connections is limited to the linker's address selection; no connection is established yet.
+connections uses linker address selection and the interface's sided capability diagnostics; transport is still planned.
 The first components use amethyst, quartz, redstone, iron, and copper. Use accessible vanilla resources where practical;
 do not begin by rebuilding an industrial material chain.
 

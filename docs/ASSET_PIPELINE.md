@@ -28,6 +28,9 @@ The [Subspace Detector](DETECTOR.md) reuses this pipeline for an interactive ins
   32×32 textures and builds the anchor's 23-element active/inactive models, item model, states, loot,
   and GUI atlas. [`preview_anchor.py`](../tools/assets/preview_anchor.py) inspects the JSON geometry/UVs
   offline. Datagen owns its recipe, advancement, names, and shared mining tag.
+- [`generate_interface.py`](../tools/assets/generate_interface.py) converts its saved material atlas to
+  six 32×32 textures and writes two 13-element models, eight facing/state variants, inventory model, and
+  loot. It reuses the offline geometry renderer for inspection. Datagen owns its recipe, names, and mining tag.
 
 Authoring requires Python 3.10+ and the Pillow version in `tools/assets/requirements.txt`. The ordinary
 Gradle build uses the committed PNG/JSON files and does **not** require Python or image generation.

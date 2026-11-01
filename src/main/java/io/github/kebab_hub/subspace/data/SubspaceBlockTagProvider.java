@@ -15,6 +15,6 @@ public final class SubspaceBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags() {
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModRegistries.SUBSPACE_TEST_CASING.get(),
-                ModRegistries.SUBSPACE_DETECTOR.get(), ModRegistries.SUBSPACE_ANCHOR.get());
+                ModRegistries.SUBSPACE_DETECTOR.get(), ModRegistries.SUBSPACE_ANCHOR.get(), ModRegistries.SUBSPACE_INTERFACE.get());
     }
 }

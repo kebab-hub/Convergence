@@ -1,6 +1,7 @@
 package io.github.kebab_hub.subspace.common.item;
 
 import io.github.kebab_hub.subspace.common.link.Endpoint;
+import io.github.kebab_hub.subspace.common.interfaceblock.InterfaceInteraction;
 import io.github.kebab_hub.subspace.common.link.EndpointAvailability;
 import io.github.kebab_hub.subspace.common.link.LinkerSelection;
 import io.github.kebab_hub.subspace.common.registry.ModParticles;
@@ -41,6 +42,8 @@ public final class PhaseLinkerItem extends Item {
         }
         if (!(context.getLevel() instanceof ServerLevel world)) return InteractionResult.SUCCESS;
         if (player.isShiftKeyDown()) {
+            InteractionResult configured = InterfaceInteraction.applyLinker(world, context.getClickedPos(), player, stack);
+            if (configured != null) return configured;
             clear(stack, player);
             return InteractionResult.CONSUME;
         }
@@ -99,6 +102,7 @@ public final class PhaseLinkerItem extends Item {
         tooltip.add(Component.translatable("tooltip.subspace.phase_linker.select").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.subspace.phase_linker.status").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("tooltip.subspace.phase_linker.clear").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.subspace.phase_linker.interface").withStyle(ChatFormatting.GRAY));
     }
 
     private void clear(ItemStack stack, Player player) {

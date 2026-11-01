@@ -1,5 +1,23 @@
 # Asset Sources
 
+## Subspace Interface — 2026-11-01
+
+- **Origin:** Original material atlas created with built-in image generation, without external references
+  or copied textures. [Source](art/interface/materials_source.png) and [exact prompt](art/interface/prompt.txt).
+- **Finished files:** `src/main/resources/assets/subspace/textures/block/subspace_interface_*.png`:
+  frame, copper coupler, connected/disconnected crystal core, and connected/disconnected cyan display.
+  Each is an opaque 32×32 PNG using the shared palette.
+- **Conversion:** `tools/assets/generate_interface.py` crops the actual tile boundaries (the horizontal
+  source seam is at 48% height), samples with nearest neighbor, and maps to the palette. Disconnected
+  variants preserve the art with dimmed palette substitutions; no smoothing or replacement drawings.
+- **Models/data:** Two 13-element models contain raised dark rails, copper collars, a recessed socket,
+  crystal, and status indicators. Connected core/indicator fronts are emissive. Eight variants cover four
+  facings and two connection states. Inventory uses the disconnected model. The generator also writes loot;
+  datagen owns translations, recipe/advancement, and the shared mining tag.
+- **Inspection:** Viewed native/enlarged textures and both JSON geometry/UV renders using the existing
+  offline renderer. No Minecraft was launched. No new particles, sounds, GUI, or animation sheet are needed;
+  applying a link reuses Minecraft's amethyst chime. See [Interface](INTERFACE.md) for manual checks.
+
 ## Subspace Anchor — 2026-11-01
 
 - **Origin:** An original four-quadrant material atlas created with built-in image generation. No external

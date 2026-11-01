@@ -27,7 +27,8 @@ public final class SubspaceLanguageProvider extends LanguageProvider {
         add(ModRegistries.PHASE_LINKER.get(), "Phase Linker");
         add("tooltip.subspace.phase_linker.select", "Right-click a block: select its face");
         add("tooltip.subspace.phase_linker.status", "Right-click air: check saved endpoints");
-        add("tooltip.subspace.phase_linker.clear", "Sneak-right-click: clear endpoints");
+        add("tooltip.subspace.phase_linker.clear", "Sneak-right-click air: clear endpoints");
+        add("tooltip.subspace.phase_linker.interface", "Sneak-use on Interface: apply endpoint A");
         add("tooltip.subspace.phase_linker.next_a", "Next: select endpoint A");
         add("tooltip.subspace.phase_linker.next_b", "Next: select endpoint B");
         add("tooltip.subspace.phase_linker.restart", "Pair recorded. Next selection starts a new A.");
@@ -61,5 +62,31 @@ public final class SubspaceLanguageProvider extends LanguageProvider {
         add("screen.subspace.anchor.syncing", "Synchronizing...");
         add("screen.subspace.anchor.activate", "Activate");
         add("screen.subspace.anchor.deactivate", "Deactivate");
+        add(ModRegistries.SUBSPACE_INTERFACE.get(), "Subspace Interface");
+        add("message.subspace.interface.target", "Target: %s [%s, %s, %s] - %s");
+        add("message.subspace.interface.state", "Interface: %s");
+        add("message.subspace.interface.channel", "%s: %s");
+        add("message.subspace.interface.available", "Detected on target side");
+        add("message.subspace.interface.unavailable", "Unavailable");
+        add("message.subspace.interface.help", "Linker: select A, then sneak-use on Interface. Empty-hand sneak-use: clear. No transport yet.");
+        add("message.subspace.interface.cleared", "Interface target cleared.");
+        add("message.subspace.interface.forbidden", "You cannot configure this interface here.");
+        add("message.subspace.interface.select_a", "Select a valid endpoint A with the Phase Linker first.");
+        add("message.subspace.interface.invalid_link", "Self-links and links to another Interface are not supported.");
+        add("channel.subspace.items", "Item handler");
+        add("channel.subspace.fluids", "Fluid handler");
+        add("channel.subspace.energy", "Forge Energy");
+        add("state.subspace.interface.unbound", "No target configured");
+        add("state.subspace.interface.invalid_data", "Invalid saved target; clear or reconfigure");
+        add("state.subspace.interface.self_link", "Self-link rejected");
+        add("state.subspace.interface.dimension_unavailable", "Target dimension unavailable");
+        add("state.subspace.interface.out_of_bounds", "Target outside build limits or world border");
+        add("state.subspace.interface.unloaded", "Target chunk unloaded (address retained)");
+        add("state.subspace.interface.block_missing", "Target block missing (address retained)");
+        add("state.subspace.interface.no_block_entity", "Target has no available block entity");
+        add("state.subspace.interface.chain_unsupported", "Interface chains are not supported");
+        add("state.subspace.interface.unsupported", "No supported capabilities on target side");
+        add("state.subspace.interface.capability_error", "Target capability query failed");
+        add("state.subspace.interface.ready", "Target available (transport not implemented)");
     }
 }

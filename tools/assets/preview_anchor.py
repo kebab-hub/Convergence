@@ -5,8 +5,8 @@ from PIL import Image, ImageDraw
 from common import ASSETS, ROOT
 
 
-def render(active):
-    model = json.loads((ASSETS / f"models/block/subspace_anchor_{active}.json").read_text())
+def render(active, model_name="subspace_anchor"):
+    model = json.loads((ASSETS / f"models/block/{model_name}_{active}.json").read_text())
     textures = {key: Image.open(ASSETS / ("textures/" + path.split(":")[1] + ".png")).convert("RGBA")
                 for key, path in model["textures"].items()}
     faces = []

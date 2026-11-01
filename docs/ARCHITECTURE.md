@@ -17,7 +17,8 @@ The previous mod's machines, recipes, materials, and progression are not a found
 `DeferredRegister` instances for blocks, items, block entities, and menus. Content consists of
 the decorative `subspace_test_casing`, the [Subspace Detector](DETECTOR.md), their block items,
 five ordinary [components](COMPONENTS.md), the handheld [Phase Linker](PHASE_LINKER.md), and
-the [Subspace Anchor](ANCHOR.md). The anchor introduces one block entity and one slotless menu. Its `TAB`
+the [Subspace Anchor](ANCHOR.md), and [Subspace Interface](INTERFACE.md). The anchor has a block entity and
+slotless menu; the interface has a separate thin block entity for its direct target. Its `TAB`
 is constructed when the entrypoint initializes that class, so it exists even before content is added.
 Future items can use `Item.Properties.tab(ModRegistries.TAB)` without separate tab-population logic.
 
@@ -43,6 +44,10 @@ addresses and reports malformed state without overwriting it.
 retains that identity across reloads; active state lives in block state. Its menu synchronizes the address,
 status, and zero linked endpoints, and validates local activation requests without chunk loading.
 Client menu registration/screens are isolated under `client`; no routing or network membership is added.
+The interface composes `DirectLinkConfig`, `DirectLinkInspector`, and typed `CapabilityChannels`.
+Persistent addresses are separate from immutable `ConnectionSnapshot` diagnostics. Queries inspect only
+loaded target chunks and the selected side, retain no handlers, and never follow another direct-link host.
+The block's `connected` flag presents capability availability; it exposes no proxy or transport yet.
 See [Asset Pipeline](ASSET_PIPELINE.md) for conventions and file validation. These implemented blocks/tools
 do not implement any transport or spatial system below.
 

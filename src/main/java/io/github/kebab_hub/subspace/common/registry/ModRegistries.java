@@ -1,6 +1,8 @@
 package io.github.kebab_hub.subspace.common.registry;
 
 import io.github.kebab_hub.subspace.Subspace;
+import io.github.kebab_hub.subspace.common.block.SubspaceInterfaceBlock;
+import io.github.kebab_hub.subspace.common.interfaceblock.SubspaceInterfaceBlockEntity;
 import io.github.kebab_hub.subspace.common.anchor.SubspaceAnchorBlockEntity;
 import io.github.kebab_hub.subspace.common.block.SubspaceAnchorBlock;
 import io.github.kebab_hub.subspace.common.menu.AnchorMenu;
@@ -85,6 +87,16 @@ public final class ModRegistries {
                     SubspaceAnchorBlockEntity::new, SUBSPACE_ANCHOR.get()).build(null));
     public static final RegistryObject<MenuType<AnchorMenu>> ANCHOR_MENU =
             MENUS.register("subspace_anchor", () -> IForgeMenuType.create(AnchorMenu::new));
+
+    public static final RegistryObject<Block> SUBSPACE_INTERFACE = BLOCKS.register("subspace_interface",
+            () -> new SubspaceInterfaceBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(4.0F).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()
+                    .lightLevel(state -> state.getValue(SubspaceInterfaceBlock.CONNECTED) ? 5 : 0)));
+    public static final RegistryObject<Item> SUBSPACE_INTERFACE_ITEM = ITEMS.register("subspace_interface",
+            () -> new BlockItem(SUBSPACE_INTERFACE.get(), new Item.Properties().tab(TAB)));
+    public static final RegistryObject<BlockEntityType<SubspaceInterfaceBlockEntity>> SUBSPACE_INTERFACE_ENTITY =
+            BLOCK_ENTITIES.register("subspace_interface", () -> BlockEntityType.Builder.of(
+                    SubspaceInterfaceBlockEntity::new, SUBSPACE_INTERFACE.get()).build(null));
 
     private ModRegistries() {
     }

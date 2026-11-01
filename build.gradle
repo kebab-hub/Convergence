@@ -145,6 +145,16 @@ tasks.register('verifyAnchorIdentity', JavaExec) {
 }
 tasks.named('check').configure { dependsOn tasks.named('verifyAnchorIdentity') }
 
+tasks.register('verifyDirectLinks', JavaExec) {
+    group = 'verification'
+    description = 'Checks direct-link persistence and sided capability probing without starting Minecraft.'
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'io.github.kebab_hub.subspace.common.link.DirectLinkChecks'
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
+}
+tasks.named('check').configure { dependsOn tasks.named('verifyDirectLinks') }
+
 jar {
     manifest {
         attributes([
