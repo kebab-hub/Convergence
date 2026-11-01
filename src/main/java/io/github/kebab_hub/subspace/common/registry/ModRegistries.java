@@ -1,6 +1,7 @@
 package io.github.kebab_hub.subspace.common.registry;
 
 import io.github.kebab_hub.subspace.Subspace;
+import io.github.kebab_hub.subspace.common.item.PhaseLinkerItem;
 import io.github.kebab_hub.subspace.common.block.FacingDecorativeBlock;
 import io.github.kebab_hub.subspace.common.block.SubspaceDetectorBlock;
 import net.minecraft.resources.ResourceLocation;
@@ -59,6 +60,8 @@ public final class ModRegistries {
     public static final RegistryObject<Item> RESONANCE_COIL = component("resonance_coil");
     public static final RegistryObject<Item> PHASE_ALLOY_INGOT = component("phase_alloy_ingot");
     public static final RegistryObject<Item> PHASE_ALLOY_PLATE = component("phase_alloy_plate");
+    public static final RegistryObject<Item> PHASE_LINKER = ITEMS.register("phase_linker",
+            () -> new PhaseLinkerItem(new Item.Properties().tab(TAB)));
 
     public static final RegistryObject<Block> SUBSPACE_DETECTOR = BLOCKS.register("subspace_detector",
             () -> new SubspaceDetectorBlock(BlockBehaviour.Properties.of(Material.METAL)

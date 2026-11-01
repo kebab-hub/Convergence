@@ -18,5 +18,7 @@ public final class SubspaceItemModelProvider extends ItemModelProvider {
         basicItem(ModRegistries.RESONANCE_COIL.get());
         basicItem(ModRegistries.PHASE_ALLOY_INGOT.get());
         basicItem(ModRegistries.PHASE_ALLOY_PLATE.get());
+        withExistingParent("phase_linker", mcLoc("item/handheld"))
+                .texture("layer0", modLoc("item/phase_linker"));
     }
 }

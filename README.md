@@ -6,7 +6,7 @@ create pocket spaces, and fold distance.
 
 ## Status
 
-**Foundation, five craftable components, and a basic Subspace Detector.** This repository replaces the former
+**Foundation, five craftable components, a Subspace Detector, and the handheld Phase Linker.** This repository replaces the former
 Convergence project; its crusher, progression, assets, and integration code have been retired.
 The foundation includes typed registries, a creative tab, language data generation, the Gradle wrapper,
 and CI. One decorative block, `subspace_test_casing`, demonstrates finished 32×32 textures, a recessed
@@ -14,7 +14,9 @@ model, and an animated emissive crystal. A command-testable spark demonstrates p
 Phase Crystal, Stabilized Phase Crystal, Resonance Coil, Phase Alloy Ingot, and Phase Alloy Plate have
 finished item sprites, crafting recipes, and tags. See [Components](docs/COMPONENTS.md) for recipes.
 The [Subspace Detector](docs/DETECTOR.md) shows an ambient reading on right-click and activates briefly
-or while redstone-powered, with finished models, lighting, sound, and particles. There are no block
+or while redstone-powered, with finished models, lighting, sound, and particles.
+The [Phase Linker](docs/PHASE_LINKER.md) records two endpoint addresses and reports their availability
+without loading chunks; it has a crafting recipe, finished sprite, sound, and selection particles. There are no block
 entities, menus, research systems, transport networks, pocket spaces, or portals yet.
 
 Planned mechanics:
@@ -44,6 +46,7 @@ or item must arrive with its actual 32×32 Minecraft textures and models in the 
 - [Asset pipeline and validation](docs/ASSET_PIPELINE.md)
 - [Implemented components and crafting](docs/COMPONENTS.md)
 - [Subspace Detector](docs/DETECTOR.md)
+- [Phase Linker](docs/PHASE_LINKER.md)
 - [Asset sources and tab-atlas generation](docs/ASSET_SOURCES.md)
 - [Agent rules](AGENTS.md)
 
@@ -71,7 +74,7 @@ The wrapper downloads Gradle and Forge dependencies on first use.
 ```
 
 Use `./gradlew.bat` on Windows PowerShell. The jar is written to `build/libs/subspace-<version>.jar`.
-`runData` generates English names, component item models, recipes, recipe-book advancements, and item/block tags
+`runData` generates English names, standalone item models, recipes, recipe-book advancements, and item/block tags
 into `src/generated/resources`; generated resources
 must be committed. Run data generation before a separate `build` when changing providers so the jar
 includes the updated output. GameTests live in `src/gametest` and are excluded from the shipped jar.
@@ -81,12 +84,15 @@ accept Minecraft's EULA before hosting. GameTests use a separate `run-gametest/`
 Use a new development world for this restart. There is no migration of Convergence registry IDs or saves.
 
 `build` includes `validateAssets`, which checks local model/texture references and animation/particle assets
-without launching Minecraft. It also runs `verifyDetectorSignal`, a pure Java signal check. GameTests are
+without launching Minecraft. It also runs `verifyDetectorSignal` and `verifyLinkerSelection`, Java checks of
+ambient readings and endpoint persistence (including malformed NBT). GameTests are
 compiled by `build` and require a separate explicit server run. See the asset pipeline guide for optional Python authoring tools.
 
 ## Manual visual check
 
-Install `subspace-0.0.5.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Follow the detector's
+Install `subspace-0.0.6.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Follow the linker's
+[manual checks](docs/PHASE_LINKER.md#owners-in-game-checks) for endpoint selection, status, clearing,
+cross-dimension persistence, unloaded positions, and feedback. Follow the detector's
 [manual checks](docs/DETECTOR.md#owners-in-game-checks) for readings, manual expiry, redstone, sound,
 particles, and all model orientations. Check the five components'
 inventory/held/dropped sprites and craft each recipe in [Components](docs/COMPONENTS.md).

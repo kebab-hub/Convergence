@@ -16,7 +16,7 @@ The previous mod's machines, recipes, materials, and progression are not a found
 `Subspace` attaches `ModRegistries` and `SubspaceData` to the mod event bus. `ModRegistries` owns typed
 `DeferredRegister` instances for blocks, items, block entities, and menus. Content consists of
 the decorative `subspace_test_casing`, the [Subspace Detector](DETECTOR.md), their block items,
-and five ordinary [components](COMPONENTS.md);
+five ordinary [components](COMPONENTS.md), and the handheld [Phase Linker](PHASE_LINKER.md);
 block entities and menus remain empty. Its `TAB`
 is constructed when the entrypoint initializes that class, so it exists even before content is added.
 Future items can use `Item.Properties.tab(ModRegistries.TAB)` without separate tab-population logic.
@@ -27,7 +27,7 @@ returns an empty stack: no fake icon item is registered. The native creative inv
 third-party UIs that only query the tab's icon stack will see an empty stack. The vanilla inventory
 panel is retained, and no custom renderer or client-only bootstrap is required.
 
-Client data providers generate names and component item models. Server data providers generate
+Client data providers generate names and standalone item models. Server data providers generate
 crafting recipes, their recipe-book advancements, and item/block tags. Component registrations reuse plain
 `Item` instances; they introduce no custom gameplay classes.
 The casing and detector asset tools reproduce their loot, models, textures, and blockstates. The shared
@@ -35,8 +35,12 @@ mining tag is owned by datagen so running either asset tool cannot discard anoth
 `ModParticles` registers the reference spark type; a client-only subscriber registers its sprite factory.
 Active detectors reuse that particle. A pure `BackgroundActivity` sampler supplies the server-side reading;
 the detector's activation lives in block state and one scheduled expiry tick, with no block entity.
-See [Asset Pipeline](ASSET_PIPELINE.md) for conventions and file validation. The ambient detector does not
-implement any transport or spatial system below.
+`PhaseLinkerItem` delegates address persistence to `Endpoint` / `LinkerSelection` and no-load status checks
+to `EndpointAvailability`. Only dimension, position, and face are saved for A/B on each item stack;
+there are no capability references or network records. Server-side selection preserves unavailable
+addresses and reports malformed state without overwriting it.
+See [Asset Pipeline](ASSET_PIPELINE.md) for conventions and file validation. The ambient detector and
+linker do not implement any transport or spatial system below.
 
 ## Composition before machine classes
 

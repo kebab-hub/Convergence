@@ -21,6 +21,9 @@ The [Subspace Detector](DETECTOR.md) reuses this pipeline for an interactive ins
   for reproduction and data ownership. Component models, recipes, tags, and names are owned by datagen.
 - [`generate_detector.py`](../tools/assets/generate_detector.py) converts saved generated front/side/top
   art to the palette and creates the detector's active/inactive models, blockstates, and loot.
+- [`convert_phase_linker.py`](../tools/assets/convert_phase_linker.py) converts the saved original probe
+  sprite to a transparent 32×32 palette texture. Datagen owns its handheld model, recipe, and names.
+  See [Phase Linker](PHASE_LINKER.md) for reproduction and interaction checks.
 
 Authoring requires Python 3.10+ and the Pillow version in `tools/assets/requirements.txt`. The ordinary
 Gradle build uses the committed PNG/JSON files and does **not** require Python or image generation.
@@ -124,7 +127,8 @@ JSON together. Particle JSON uses IDs such as `subspace:subspace_spark`; they re
 `textures/particle/`, unlike model texture IDs. No custom atlas loader is necessary.
 
 The reference spark uses a finished violet crystalline sprite, full-bright lighting, supplied velocity,
-and a 16-tick fade. Active detectors spawn it; the casing does **not**. The registration can also be checked manually:
+and a 16-tick fade. Active detectors and successful Phase Linker selections spawn it; the casing does **not**.
+The registration can also be checked manually:
 
 ```text
 /particle subspace:subspace_spark ~ ~1 ~ 0.2 0.2 0.2 0.02 20 force
@@ -145,6 +149,7 @@ File validation does not replace Minecraft rendering checks. The owner should ve
 - All four placement directions, recessed geometry, adjacent casings, inventory/held views, and mining
   particles render correctly. A pickaxe should recover the block; there is no crafting recipe.
 - The core stays luminous in darkness, pulses slowly, and lights nearby surfaces.
-- The particle command displays a small violet spark which fades. Automatic sparks appear only at active detectors.
+- The particle command displays a small violet spark which fades. Active detectors and successful
+  linker selections also produce sparks.
 
 Do not launch Minecraft as part of this task's automated validation.

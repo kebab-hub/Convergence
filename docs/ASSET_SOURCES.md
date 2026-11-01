@@ -1,5 +1,20 @@
 # Asset Sources
 
+## Phase Linker — 2026-11-01
+
+- **Origin:** Original transparent probe sprite generated with the built-in image-generation tool.
+  No external reference images, copied game art, or third-party textures were supplied.
+- **Source and prompt:** [Full 1254×1254 source](art/phase_linker/source.png) and
+  [exact generation prompt](art/phase_linker/prompt.txt).
+- **Finished asset:** `src/main/resources/assets/subspace/textures/item/phase_linker.png`.
+  `tools/assets/convert_phase_linker.py` crops to alpha coverage, preserves the aspect ratio within
+  28 pixels, uses nearest-neighbor sampling, maps to the shared 21-color palette, and thresholds alpha
+  at 128. The final centered canvas is 32×32; there is no smoothing, dithering, or replacement drawing.
+- **Model/effects:** Datagen supplies `minecraft:item/handheld`. Selection reuses `subspace_spark` and
+  Minecraft's amethyst chime, with distinct A/B pitches. No additional effect assets are required.
+- **Inspection:** Viewed the final native 32×32 and reduced 16×16 sprite with enlarged light/dark
+  previews. No Minecraft client or gameplay server was launched. See [Phase Linker](PHASE_LINKER.md).
+
 ## Subspace Detector — 2026-11-01
 
 - **Origin:** Original front, side, and top face art made with the built-in image-generation tool;
