@@ -169,7 +169,7 @@ def models_and_data():
             "entries": [{"type": "minecraft:item", "name": f"subspace:{NAME}"}],
             "conditions": [{"condition": "minecraft:survives_explosion"}]}],
     })
-    write_json(DATA / "minecraft/tags/blocks/mineable/pickaxe.json", {"replace": False, "values": [f"subspace:{NAME}"]})
+    # Shared mining tags are owned by SubspaceBlockTagProvider.
 
 
 def main():

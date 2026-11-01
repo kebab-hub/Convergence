@@ -1,14 +1,15 @@
 # Subspace Engineering — Progression
 
 All system stages below are planned. The five [first components](COMPONENTS.md) and their vanilla-resource
-crafting recipes are implemented; they do not yet unlock subspace abilities or a research tree.
+crafting recipes are implemented, along with a [Subspace Detector](DETECTOR.md) for basic ambient readings.
+They do not yet unlock transport/spatial abilities or a research tree.
 Progression should teach one shared system at a time and expand what players can connect or build.
 It should remain compact and playable with vanilla Minecraft and Forge alone.
 
 ## 1. Discover the layer
 
-Introduce evidence of subspace and a readable way to identify potential connections. The exact discovery
-method is undecided. The first components use amethyst, quartz, redstone, iron, and copper. Use accessible vanilla resources where practical;
+The detector introduces background subspace activity through a simple reading. Identifying potential
+connections is still planned. The first components use amethyst, quartz, redstone, iron, and copper. Use accessible vanilla resources where practical;
 do not begin by rebuilding an industrial material chain.
 
 Player outcome: understand that subspace links real endpoints and has measurable limits.

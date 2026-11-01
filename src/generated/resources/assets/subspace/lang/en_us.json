@@ -1,9 +1,14 @@
 {
+  "block.subspace.subspace_detector": "Subspace Detector",
   "block.subspace.subspace_test_casing": "Subspace Test Casing",
   "item.subspace.phase_alloy_ingot": "Phase Alloy Ingot",
   "item.subspace.phase_alloy_plate": "Phase Alloy Plate",
   "item.subspace.phase_crystal": "Phase Crystal",
   "item.subspace.resonance_coil": "Resonance Coil",
   "item.subspace.stabilized_phase_crystal": "Stabilized Phase Crystal",
-  "itemGroup.subspace": "Subspace Engineering"
+  "itemGroup.subspace": "Subspace Engineering",
+  "message.subspace.detector.elevated": "Elevated",
+  "message.subspace.detector.quiet": "Quiet",
+  "message.subspace.detector.reading": "Subspace activity: %s/100 - %s",
+  "message.subspace.detector.steady": "Steady"
 }

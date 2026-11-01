@@ -19,5 +19,10 @@ public final class SubspaceLanguageProvider extends LanguageProvider {
         add(ModRegistries.RESONANCE_COIL.get(), "Resonance Coil");
         add(ModRegistries.PHASE_ALLOY_INGOT.get(), "Phase Alloy Ingot");
         add(ModRegistries.PHASE_ALLOY_PLATE.get(), "Phase Alloy Plate");
+        add(ModRegistries.SUBSPACE_DETECTOR.get(), "Subspace Detector");
+        add("message.subspace.detector.reading", "Subspace activity: %s/100 - %s");
+        add("message.subspace.detector.quiet", "Quiet");
+        add("message.subspace.detector.steady", "Steady");
+        add("message.subspace.detector.elevated", "Elevated");
     }
 }

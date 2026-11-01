@@ -21,5 +21,7 @@ public final class SubspaceData {
                 new SubspaceRecipeProvider(event.getGenerator()));
         event.getGenerator().addProvider(event.includeServer(),
                 new SubspaceItemTagProvider(event.getGenerator(), event.getExistingFileHelper()));
+        event.getGenerator().addProvider(event.includeServer(),
+                new SubspaceBlockTagProvider(event.getGenerator(), event.getExistingFileHelper()));
     }
 }

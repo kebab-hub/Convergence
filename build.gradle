@@ -115,6 +115,16 @@ tasks.named('check').configure {
     dependsOn tasks.named('compileGametestJava')
 }
 
+tasks.register('verifyDetectorSignal', JavaExec) {
+    group = 'verification'
+    description = 'Runs pure Java detector signal checks without starting Minecraft.'
+    dependsOn tasks.named('testClasses')
+    classpath = files(sourceSets.test.output, sourceSets.main.output)
+    mainClass = 'io.github.kebab_hub.subspace.common.detection.BackgroundActivityChecks'
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
+}
+tasks.named('check').configure { dependsOn tasks.named('verifyDetectorSignal') }
+
 jar {
     manifest {
         attributes([

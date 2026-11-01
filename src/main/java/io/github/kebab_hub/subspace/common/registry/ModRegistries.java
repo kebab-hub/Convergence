@@ -2,6 +2,7 @@ package io.github.kebab_hub.subspace.common.registry;
 
 import io.github.kebab_hub.subspace.Subspace;
 import io.github.kebab_hub.subspace.common.block.FacingDecorativeBlock;
+import io.github.kebab_hub.subspace.common.block.SubspaceDetectorBlock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -58,6 +59,13 @@ public final class ModRegistries {
     public static final RegistryObject<Item> RESONANCE_COIL = component("resonance_coil");
     public static final RegistryObject<Item> PHASE_ALLOY_INGOT = component("phase_alloy_ingot");
     public static final RegistryObject<Item> PHASE_ALLOY_PLATE = component("phase_alloy_plate");
+
+    public static final RegistryObject<Block> SUBSPACE_DETECTOR = BLOCKS.register("subspace_detector",
+            () -> new SubspaceDetectorBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(3.5F).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()
+                    .lightLevel(SubspaceDetectorBlock::lightLevel)));
+    public static final RegistryObject<Item> SUBSPACE_DETECTOR_ITEM = ITEMS.register("subspace_detector",
+            () -> new BlockItem(SUBSPACE_DETECTOR.get(), new Item.Properties().tab(TAB)));
 
     private ModRegistries() {
     }

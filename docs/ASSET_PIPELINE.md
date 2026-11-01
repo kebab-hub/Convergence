@@ -4,6 +4,7 @@ This pipeline targets Minecraft 1.19.2 / Forge 43.5.2. It adds one decorative re
 `subspace:subspace_test_casing`, and a reference particle, `subspace:subspace_spark`.
 The casing has no inventory, block entity, menu, recipe, ticking, network, or subspace behavior.
 Its constant light level of 7, animated crystal, and horizontal facing are visual features only.
+The [Subspace Detector](DETECTOR.md) reuses this pipeline for an interactive instrument.
 
 ## Palette and authoring helpers
 
@@ -18,6 +19,8 @@ Its constant light level of 7, animated crystal, and horizontal facing are visua
 - [`convert_component_textures.py`](../tools/assets/convert_component_textures.py) converts the five
   saved component source images into transparent 32×32 palette sprites. See [Components](COMPONENTS.md)
   for reproduction and data ownership. Component models, recipes, tags, and names are owned by datagen.
+- [`generate_detector.py`](../tools/assets/generate_detector.py) converts saved generated front/side/top
+  art to the palette and creates the detector's active/inactive models, blockstates, and loot.
 
 Authoring requires Python 3.10+ and the Pillow version in `tools/assets/requirements.txt`. The ordinary
 Gradle build uses the committed PNG/JSON files and does **not** require Python or image generation.
@@ -48,11 +51,12 @@ that preview. Re-running the script reproduces the checked-in casing assets and 
 | Blockstates | `assets/subspace/blockstates/<block>.json` |
 | Particle sprite lists | `assets/subspace/particles/<registered_particle>.json` |
 | Language | `SubspaceLanguageProvider` → `src/generated/resources/assets/subspace/lang/en_us.json` |
-| Loot and tags | `src/main/resources/data/<namespace>/...` for this reference block |
+| Block loot | `src/main/resources/data/subspace/loot_tables/blocks/` |
+| Shared mining tags | `SubspaceBlockTagProvider` → `src/generated/resources/data/minecraft/tags/blocks/` |
 
-The casing authoring script owns its textures, template, models, blockstate, loot/tag JSON, and spark
+The casing authoring script owns its textures, template, models, blockstate, loot JSON, and spark
 sprite/definition. Change the script or palette before regenerating those files; otherwise regeneration
-will replace manual edits. Language is owned by datagen. Do not duplicate a resource in `main` and
+will replace manual edits. Language and shared mining tags are owned by datagen. Do not duplicate a resource in `main` and
 `generated`, or manually edit generated language output. Future assets can use the helpers without
 becoming outputs of this casing-specific script.
 
@@ -120,7 +124,7 @@ JSON together. Particle JSON uses IDs such as `subspace:subspace_spark`; they re
 `textures/particle/`, unlike model texture IDs. No custom atlas loader is necessary.
 
 The reference spark uses a finished violet crystalline sprite, full-bright lighting, supplied velocity,
-and a 16-tick fade. The casing does **not** spawn it. It exists to verify the registration path manually:
+and a 16-tick fade. Active detectors spawn it; the casing does **not**. The registration can also be checked manually:
 
 ```text
 /particle subspace:subspace_spark ~ ~1 ~ 0.2 0.2 0.2 0.02 20 force
@@ -141,6 +145,6 @@ File validation does not replace Minecraft rendering checks. The owner should ve
 - All four placement directions, recessed geometry, adjacent casings, inventory/held views, and mining
   particles render correctly. A pickaxe should recover the block; there is no crafting recipe.
 - The core stays luminous in darkness, pulses slowly, and lights nearby surfaces.
-- The particle command displays a small violet spark which fades; no particles appear automatically.
+- The particle command displays a small violet spark which fades. Automatic sparks appear only at active detectors.
 
 Do not launch Minecraft as part of this task's automated validation.

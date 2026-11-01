@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": {
+      "tag": "forge:glass/colorless"
+    },
+    "I": {
+      "tag": "forge:ingots/phase_alloy"
+    },
+    "P": {
+      "tag": "forge:plates/phase_alloy"
+    },
+    "R": {
+      "tag": "subspace:resonance_coils"
+    },
+    "S": {
+      "tag": "subspace:stabilized_phase_crystals"
+    }
+  },
+  "pattern": [
+    "PGP",
+    " S ",
+    "IRI"
+  ],
+  "result": {
+    "item": "subspace:subspace_detector"
+  }
+}

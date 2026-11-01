@@ -9,7 +9,7 @@ import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.SimpleParticleType;
 
-/** Reference sprite particle for the visual pipeline. Nothing spawns it automatically. */
+/** Shared crystalline spark, also used by active detectors. */
 public final class SubspaceSparkParticle extends TextureSheetParticle {
     private static final int LIFETIME_TICKS = 16;
 

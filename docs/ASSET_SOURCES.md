@@ -1,5 +1,22 @@
 # Asset Sources
 
+## Subspace Detector — 2026-11-01
+
+- **Origin:** Original front, side, and top face art made with the built-in image-generation tool;
+  a built-in edit of the front made the inactive state. No third-party textures or reference images
+  were supplied. All four originals are in `art/detector/*_source.png`.
+- **Prompts:** [Generation prompts](art/detector/prompts.json) and [inactive edit prompt](art/detector/inactive_prompt.txt).
+- **Finished PNGs:** `src/main/resources/assets/subspace/textures/block/subspace_detector_{front_active,front_inactive,side,top}.png`.
+  Each is opaque 32×32. `tools/assets/generate_detector.py` uses nearest-neighbor conversion and the
+  shared palette, without smoothing or replacement drawings.
+- **Models:** The same tool writes two 18-element instrument models, their 16 blockstate combinations,
+  the inactive item model, and self-drop loot. Rails, fasteners, bezels, socket, and sensor have physical
+  depth; only active crystal/screen faces are emissive. There is no custom renderer or animation sheet.
+- **Effects:** The detector reuses the original `subspace_spark` sprite below and Minecraft's existing
+  amethyst chime sound event. No copied sound files or new particle resources are needed.
+- **Inspection:** Inspected native/enlarged textures and an offline geometry render of both JSON models.
+  Minecraft was not launched. See [Detector](DETECTOR.md) for reproduction and manual checks.
+
 ## First five components — 2026-10-31
 
 - **Origin:** Five original sprites made with the built-in image-generation tool, one call per item.
@@ -31,7 +48,7 @@
 - **Particle:** `textures/particle/subspace_spark.png` under the same asset root is an original 32×32
   crystalline spark drawn from that palette, with intentional transparent surroundings.
 - **Models:** The authoring script writes the reusable recessed-casing model, concrete block/item models,
-  four facing variants, sprite definition, loot, and mining tag. Geometry uses ten elements, with physical
+  four facing variants, sprite definition, and loot. Shared mining tags now come from datagen. Geometry uses ten elements, with physical
   recesses and retainers. Only the crystal face is emissive; the casing also emits a constant light level.
 - **Reproduction:** Follow [Asset Pipeline](ASSET_PIPELINE.md). Finished resources and the full reference
   are stored in the repository. The tool creates `build/asset-preview.png` for pixel inspection.

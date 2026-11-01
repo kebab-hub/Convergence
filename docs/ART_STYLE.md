@@ -11,6 +11,8 @@ All block and item textures use **32×32 Minecraft pixel art**. The foundation i
 32×32 creative-tab emblem, its GUI atlas, and the decorative `subspace_test_casing` reference. GUI atlases may
 be larger to fit native Minecraft layouts; the 512×512 tab atlas preserves the emblem at 32×32 pixels.
 See [Asset Sources](ASSET_SOURCES.md) for provenance and reproduction instructions.
+The [Subspace Detector](DETECTOR.md) is the first interactive instrument, with matched active/inactive
+32×32 faces and layered JSON geometry.
 The [Asset Pipeline](ASSET_PIPELINE.md) documents the reusable palette, pixel helpers, model template,
 animation packing, particle registration, and build-time resource validation.
 
