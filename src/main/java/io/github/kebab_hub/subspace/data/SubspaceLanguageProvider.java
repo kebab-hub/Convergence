@@ -52,5 +52,14 @@ public final class SubspaceLanguageProvider extends LanguageProvider {
         add("face.subspace.phase_linker.south", "South");
         add("face.subspace.phase_linker.west", "West");
         add("face.subspace.phase_linker.east", "East");
+        add(ModRegistries.SUBSPACE_ANCHOR.get(), "Subspace Anchor");
+        add("screen.subspace.anchor.address", "Network address");
+        add("screen.subspace.anchor.status", "Status: %s");
+        add("screen.subspace.anchor.links", "Linked endpoints: %s");
+        add("screen.subspace.anchor.active", "Active / stable");
+        add("screen.subspace.anchor.inactive", "Inactive");
+        add("screen.subspace.anchor.syncing", "Synchronizing...");
+        add("screen.subspace.anchor.activate", "Activate");
+        add("screen.subspace.anchor.deactivate", "Deactivate");
     }
 }

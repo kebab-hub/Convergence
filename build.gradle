@@ -135,6 +135,16 @@ tasks.register('verifyLinkerSelection', JavaExec) {
 }
 tasks.named('check').configure { dependsOn tasks.named('verifyLinkerSelection') }
 
+tasks.register('verifyAnchorIdentity', JavaExec) {
+    group = 'verification'
+    description = 'Checks anchor persistence and lossless menu UUID synchronization without starting Minecraft.'
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'io.github.kebab_hub.subspace.common.anchor.AnchorIdentityChecks'
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
+}
+tasks.named('check').configure { dependsOn tasks.named('verifyAnchorIdentity') }
+
 jar {
     manifest {
         attributes([

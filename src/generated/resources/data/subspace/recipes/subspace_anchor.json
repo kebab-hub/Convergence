@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "P": {
+      "tag": "forge:plates/phase_alloy"
+    },
+    "R": {
+      "tag": "subspace:resonance_coils"
+    },
+    "S": {
+      "tag": "subspace:stabilized_phase_crystals"
+    }
+  },
+  "pattern": [
+    "PCP",
+    "RSR",
+    "PCP"
+  ],
+  "result": {
+    "item": "subspace:subspace_anchor"
+  }
+}

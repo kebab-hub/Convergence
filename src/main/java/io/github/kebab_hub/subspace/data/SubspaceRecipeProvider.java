@@ -73,5 +73,14 @@ public final class SubspaceRecipeProvider extends RecipeProvider {
                 .define('I', ModItemTags.PHASE_ALLOY_INGOTS)
                 .unlockedBy("has_stabilized_crystal", has(ModItemTags.STABILIZED_PHASE_CRYSTALS))
                 .save(output);
+
+        ShapedRecipeBuilder.shaped(ModRegistries.SUBSPACE_ANCHOR.get())
+                .pattern("PCP").pattern("RSR").pattern("PCP")
+                .define('P', ModItemTags.PHASE_ALLOY_PLATES)
+                .define('C', Tags.Items.INGOTS_COPPER)
+                .define('R', ModItemTags.RESONANCE_COILS)
+                .define('S', ModItemTags.STABILIZED_PHASE_CRYSTALS)
+                .unlockedBy("has_resonance_coil", has(ModItemTags.RESONANCE_COILS))
+                .save(output);
     }
 }

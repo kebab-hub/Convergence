@@ -1,5 +1,26 @@
 # Asset Sources
 
+## Subspace Anchor — 2026-11-01
+
+- **Origin:** An original four-quadrant material atlas created with built-in image generation. No external
+  references or copied game textures were used. [Source](art/anchor/materials_source.png) and
+  [exact prompt](art/anchor/prompt.txt) are committed with the assets.
+- **Finished textures:** `src/main/resources/assets/subspace/textures/block/subspace_anchor_*.png`.
+  `tools/assets/generate_anchor.py` crops each material quadrant, resamples to native 32×32 with nearest
+  neighbor, and maps to the shared palette. Inactive core/light variants preserve the same art with
+  dim palette substitutions. All six textures are opaque; no smoothing or replacement drawing is used.
+- **Models:** The same generator writes active/inactive 23-element JSON models, two blockstates, inventory
+  model, and loot. An open black-metal frame and copper clamps surround a rotated floating crystal;
+  cyan stabilizers sit on the base. Only active core/stabilizer faces are emissive.
+- **GUI:** `textures/gui/anchor.png`, a 256×256 atlas with a native 236×166 panel, is drawn using the existing
+  palette and pixel geometry conventions. It incorporates a small core detail from the generated art;
+  Minecraft supplies localized text and its native button. No text is baked into the PNG.
+- **Effects:** Existing original `subspace_spark` art and the vanilla amethyst chime are reused. Active
+  feedback uses particles rather than a separate animated sheet or custom block-entity renderer.
+- **Inspection:** Viewed 32×32 textures, enlarged active/inactive geometry/UV renders, and a GUI layout
+  preview. `tools/assets/preview_anchor.py` reproduces the latter previews without launching Minecraft;
+  its lighting/font are approximate. Client rendering remains the owner's manual check.
+
 ## Phase Linker — 2026-11-01
 
 - **Origin:** Original transparent probe sprite generated with the built-in image-generation tool.

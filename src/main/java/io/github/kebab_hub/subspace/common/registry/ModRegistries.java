@@ -1,6 +1,9 @@
 package io.github.kebab_hub.subspace.common.registry;
 
 import io.github.kebab_hub.subspace.Subspace;
+import io.github.kebab_hub.subspace.common.anchor.SubspaceAnchorBlockEntity;
+import io.github.kebab_hub.subspace.common.block.SubspaceAnchorBlock;
+import io.github.kebab_hub.subspace.common.menu.AnchorMenu;
 import io.github.kebab_hub.subspace.common.item.PhaseLinkerItem;
 import io.github.kebab_hub.subspace.common.block.FacingDecorativeBlock;
 import io.github.kebab_hub.subspace.common.block.SubspaceDetectorBlock;
@@ -16,6 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -69,6 +73,18 @@ public final class ModRegistries {
                     .lightLevel(SubspaceDetectorBlock::lightLevel)));
     public static final RegistryObject<Item> SUBSPACE_DETECTOR_ITEM = ITEMS.register("subspace_detector",
             () -> new BlockItem(SUBSPACE_DETECTOR.get(), new Item.Properties().tab(TAB)));
+
+    public static final RegistryObject<Block> SUBSPACE_ANCHOR = BLOCKS.register("subspace_anchor",
+            () -> new SubspaceAnchorBlock(BlockBehaviour.Properties.of(Material.METAL)
+                    .strength(4.5F).sound(SoundType.METAL).requiresCorrectToolForDrops().noOcclusion()
+                    .lightLevel(state -> state.getValue(SubspaceAnchorBlock.ACTIVE) ? 10 : 0)));
+    public static final RegistryObject<Item> SUBSPACE_ANCHOR_ITEM = ITEMS.register("subspace_anchor",
+            () -> new BlockItem(SUBSPACE_ANCHOR.get(), new Item.Properties().tab(TAB)));
+    public static final RegistryObject<BlockEntityType<SubspaceAnchorBlockEntity>> SUBSPACE_ANCHOR_ENTITY =
+            BLOCK_ENTITIES.register("subspace_anchor", () -> BlockEntityType.Builder.of(
+                    SubspaceAnchorBlockEntity::new, SUBSPACE_ANCHOR.get()).build(null));
+    public static final RegistryObject<MenuType<AnchorMenu>> ANCHOR_MENU =
+            MENUS.register("subspace_anchor", () -> IForgeMenuType.create(AnchorMenu::new));
 
     private ModRegistries() {
     }

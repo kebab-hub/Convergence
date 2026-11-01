@@ -3,6 +3,7 @@
 All system stages below are planned. The five [first components](COMPONENTS.md) and their vanilla-resource
 crafting recipes are implemented, along with a [Subspace Detector](DETECTOR.md) for basic ambient readings
 and a [Phase Linker](PHASE_LINKER.md) for selecting two endpoint addresses and checking their availability.
+The [Subspace Anchor](ANCHOR.md) provides a persistent local UUID endpoint with an activation/status screen.
 They do not yet unlock transport/spatial abilities or a research tree.
 Progression should teach one shared system at a time and expand what players can connect or build.
 It should remain compact and playable with vanilla Minecraft and Forge alone.

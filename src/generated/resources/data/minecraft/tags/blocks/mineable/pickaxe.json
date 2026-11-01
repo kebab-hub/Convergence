@@ -1,6 +1,7 @@
 {
   "values": [
     "subspace:subspace_test_casing",
-    "subspace:subspace_detector"
+    "subspace:subspace_detector",
+    "subspace:subspace_anchor"
   ]
 }

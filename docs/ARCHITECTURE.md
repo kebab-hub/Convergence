@@ -16,8 +16,8 @@ The previous mod's machines, recipes, materials, and progression are not a found
 `Subspace` attaches `ModRegistries` and `SubspaceData` to the mod event bus. `ModRegistries` owns typed
 `DeferredRegister` instances for blocks, items, block entities, and menus. Content consists of
 the decorative `subspace_test_casing`, the [Subspace Detector](DETECTOR.md), their block items,
-five ordinary [components](COMPONENTS.md), and the handheld [Phase Linker](PHASE_LINKER.md);
-block entities and menus remain empty. Its `TAB`
+five ordinary [components](COMPONENTS.md), the handheld [Phase Linker](PHASE_LINKER.md), and
+the [Subspace Anchor](ANCHOR.md). The anchor introduces one block entity and one slotless menu. Its `TAB`
 is constructed when the entrypoint initializes that class, so it exists even before content is added.
 Future items can use `Item.Properties.tab(ModRegistries.TAB)` without separate tab-population logic.
 
@@ -39,8 +39,12 @@ the detector's activation lives in block state and one scheduled expiry tick, wi
 to `EndpointAvailability`. Only dimension, position, and face are saved for A/B on each item stack;
 there are no capability references or network records. Server-side selection preserves unavailable
 addresses and reports malformed state without overwriting it.
-See [Asset Pipeline](ASSET_PIPELINE.md) for conventions and file validation. The ambient detector and
-linker do not implement any transport or spatial system below.
+`AnchorIdentity` persists a server-created UUID bound to its saved location. The anchor's block entity
+retains that identity across reloads; active state lives in block state. Its menu synchronizes the address,
+status, and zero linked endpoints, and validates local activation requests without chunk loading.
+Client menu registration/screens are isolated under `client`; no routing or network membership is added.
+See [Asset Pipeline](ASSET_PIPELINE.md) for conventions and file validation. These implemented blocks/tools
+do not implement any transport or spatial system below.
 
 ## Composition before machine classes
 
