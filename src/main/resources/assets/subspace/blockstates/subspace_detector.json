@@ -1,0 +1,68 @@
+{
+  "variants": {
+    "facing=north,powered=false,scanning=false": {
+      "model": "subspace:block/subspace_detector",
+      "y": 0
+    },
+    "facing=north,powered=false,scanning=true": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 0
+    },
+    "facing=north,powered=true,scanning=false": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 0
+    },
+    "facing=north,powered=true,scanning=true": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 0
+    },
+    "facing=east,powered=false,scanning=false": {
+      "model": "subspace:block/subspace_detector",
+      "y": 90
+    },
+    "facing=east,powered=false,scanning=true": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 90
+    },
+    "facing=east,powered=true,scanning=false": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 90
+    },
+    "facing=east,powered=true,scanning=true": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 90
+    },
+    "facing=south,powered=false,scanning=false": {
+      "model": "subspace:block/subspace_detector",
+      "y": 180
+    },
+    "facing=south,powered=false,scanning=true": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 180
+    },
+    "facing=south,powered=true,scanning=false": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 180
+    },
+    "facing=south,powered=true,scanning=true": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 180
+    },
+    "facing=west,powered=false,scanning=false": {
+      "model": "subspace:block/subspace_detector",
+      "y": 270
+    },
+    "facing=west,powered=false,scanning=true": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 270
+    },
+    "facing=west,powered=true,scanning=false": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 270
+    },
+    "facing=west,powered=true,scanning=true": {
+      "model": "subspace:block/subspace_detector_active",
+      "y": 270
+    }
+  }
+}

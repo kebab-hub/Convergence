@@ -1,0 +1,171 @@
+import groovy.json.JsonSlurper
+import javax.imageio.ImageIO
+
+// Pure file validation: no Minecraft client/server, Python, or extra dependencies.
+tasks.register('validateAssets') {
+    group = 'verification'
+    description = 'Checks local model/texture references, animation frames, and particle sprites.'
+    inputs.dir('src/main/resources')
+    inputs.dir('src/generated/resources')
+
+    doLast {
+        def files = [:]
+        [file('src/main/resources'), file('src/generated/resources')].each { root ->
+            if (root.exists()) {
+                fileTree(root).matching { exclude '.cache/**' }.files.each { resource ->
+                    def path = root.toPath().relativize(resource.toPath()).toString().replace('\\', '/')
+                    if (files.containsKey(path)) {
+                        throw new GradleException("Duplicate resource in main/generated: ${path}")
+                    }
+                    files[path] = resource
+                }
+            }
+        }
+        def parser = new JsonSlurper()
+        def json = [:]
+        files.each { path, resource ->
+            if (path.endsWith('.json') || path.endsWith('.mcmeta')) {
+                json[path] = parser.parse(resource, 'UTF-8')
+            }
+        }
+        def requireFile = { path ->
+            if (!files.containsKey(path)) throw new GradleException("Missing asset: ${path}")
+            files[path]
+        }
+        def resourcePath = { id, folder, suffix ->
+            if (!(id instanceof String) || !(id ==~ /[a-z0-9_.-]+:[a-z0-9_.\/-]+/) || id.contains('..')) {
+                throw new GradleException("Invalid namespaced resource ID: ${id}")
+            }
+            def parts = id.split(':', 2)
+            "assets/${parts[0]}/${folder}/${parts[1]}${suffix}".toString()
+        }
+        def modelCache = [:]
+        def resolveModel
+        resolveModel = { String id, Set trail ->
+            def path = resourcePath(id, 'models', '.json')
+            // Vanilla parents are supplied by Minecraft, not copied into the mod.
+            if (id.startsWith('minecraft:')) return [:]
+            if (trail.contains(id)) throw new GradleException("Model parent cycle: ${trail} -> ${id}")
+            if (modelCache.containsKey(id)) return modelCache[id]
+            requireFile(path)
+            def own = json[path]
+            def parent = own.parent ? resolveModel(own.parent as String, trail + [id]) : [:]
+            def resolved = parent + own
+            resolved.textures = (parent.textures ?: [:]) + (own.textures ?: [:])
+            modelCache[id] = resolved
+            resolved
+        }
+        def resolveTexture = { String value, Map slots ->
+            def seen = [] as Set
+            while (value.startsWith('#')) {
+                def slot = value.substring(1)
+                if (!seen.add(slot) || !slots.containsKey(slot)) {
+                    throw new GradleException("Missing/cyclic texture slot ${value} in ${slots}")
+                }
+                value = slots[slot]
+            }
+            def path = resourcePath(value, 'textures', '.png')
+            if (!value.startsWith('minecraft:')) requireFile(path)
+        }
+        int modelCount = 0
+        json.each { path, value ->
+            def match = path =~ /^assets\/([^\/]+)\/models\/(.+)\.json$/
+            if (match.matches() && !match.group(2).contains('/template/')) {
+                def model = resolveModel("${match.group(1)}:${match.group(2)}", [] as Set)
+                def slots = model.textures ?: [:]
+                slots.values().each { resolveTexture(it as String, slots) }
+                (model.elements ?: []).each { element ->
+                    if (element.from?.size() != 3 || element.to?.size() != 3) {
+                        throw new GradleException("Invalid element bounds: ${path}")
+                    }
+                    (0..2).each { axis ->
+                        if (element.from[axis] < 0 || element.to[axis] > 16 || element.from[axis] >= element.to[axis]) {
+                            throw new GradleException("Element outside block footprint: ${path}")
+                        }
+                    }
+                    (element.faces ?: [:]).each { side, face ->
+                        resolveTexture(face.texture as String, slots)
+                        if (face.uv && (face.uv.size() != 4 || face.uv.any { it < 0 || it > 16 })) {
+                            throw new GradleException("Invalid 0..16 face UVs: ${path}")
+                        }
+                        if ((face.emissivity ?: 0) < 0 || (face.emissivity ?: 0) > 15) {
+                            throw new GradleException("Invalid Forge face emissivity: ${path}")
+                        }
+                        if (face.cullface) {
+                            def axis = ['west': 0, 'east': 0, 'down': 1, 'up': 1, 'north': 2, 'south': 2][side]
+                            def low = side in ['west', 'down', 'north']
+                            if (face.cullface != side || axis == null ||
+                                    (low ? element.from[axis] != 0 : element.to[axis] != 16)) {
+                                throw new GradleException("Inset face must not be neighbor-culled: ${path} ${side}")
+                            }
+                        }
+                    }
+                }
+                modelCount++
+            }
+        }
+        def checkApply
+        checkApply = { apply ->
+            if (apply instanceof List) apply.each { checkApply(it) }
+            else {
+                resolveModel(apply.model as String, [] as Set)
+                ['x', 'y'].each { axis ->
+                    if (apply.containsKey(axis) && !(apply[axis] in [0, 90, 180, 270])) {
+                        throw new GradleException("Invalid blockstate rotation: ${apply}")
+                    }
+                }
+            }
+        }
+        json.each { path, value ->
+            if (path.contains('/blockstates/')) {
+                (value.variants ?: [:]).values().each { checkApply(it) }
+                (value.multipart ?: []).each { checkApply(it.apply) }
+                def parts = path.split('/')
+                def block = path.substring(path.indexOf('/blockstates/') + 13, path.length() - 5)
+                def label = "block.${parts[1]}.${block.replace('/', '.')}".toString()
+                def language = json["assets/${parts[1]}/lang/en_us.json".toString()] ?: [:]
+                if (!language[label]) throw new GradleException("Missing block translation: ${label}; run runData")
+            }
+            if (path.contains('/particles/') && path.endsWith('.json')) {
+                if (!value.textures) throw new GradleException("Particle has no sprites: ${path}")
+                value.textures.each { id ->
+                    def parts = (id as String).split(':', 2)
+                    def sprite = resourcePath(id, 'textures/particle', '.png')
+                    if (parts[0] != 'minecraft') requireFile(sprite)
+                }
+            }
+        }
+        int textureCount = 0
+        files.each { path, resource ->
+            if (path ==~ /assets\/[^\/]+\/textures\/(block|item|particle)\/.+\.png/) {
+                def image = ImageIO.read(resource)
+                if (image == null) throw new GradleException("Unreadable PNG: ${path}")
+                def metadata = json[path + '.mcmeta']
+                def animation = metadata?.animation
+                if (animation != null) {
+                    if (image.width != 32 || image.height % 32 != 0 ||
+                            (animation.containsKey('width') ? animation.width : 32) != 32 ||
+                            (animation.containsKey('height') ? animation.height : 32) != 32 ||
+                            (animation.containsKey('frametime') ? animation.frametime : 1) < 1) {
+                        throw new GradleException("Animation must use 32x32 frames and positive timing: ${path}")
+                    }
+                    def count = image.height.intdiv(32)
+                    (animation.frames ?: (0..<count)).each { frame ->
+                        def index = frame instanceof Map ? frame.index : frame
+                        if (!(index instanceof Integer) || index < 0 || index >= count ||
+                                (frame instanceof Map && frame.containsKey('time') && frame.time < 1)) {
+                            throw new GradleException("Invalid animation frame: ${path} ${frame}")
+                        }
+                    }
+                } else if (image.width != 32 || image.height != 32) {
+                    throw new GradleException("Texture must be 32x32 or have valid animation metadata: ${path}")
+                }
+                textureCount++
+            }
+            if (path.endsWith('.png.mcmeta')) requireFile(path.substring(0, path.length() - 7))
+        }
+        logger.lifecycle("Validated ${modelCount} concrete models, ${textureCount} 32x32 textures/sheets, blockstates and particle sprites.")
+    }
+}
+
+tasks.named('check').configure { dependsOn tasks.named('validateAssets') }

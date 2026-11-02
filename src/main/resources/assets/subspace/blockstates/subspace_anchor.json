@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "subspace:block/subspace_anchor_inactive"
+    },
+    "active=true": {
+      "model": "subspace:block/subspace_anchor_active"
+    }
+  }
+}

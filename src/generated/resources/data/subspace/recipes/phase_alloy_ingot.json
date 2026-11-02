@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/iron"
+    },
+    {
+      "tag": "forge:ingots/iron"
+    },
+    {
+      "tag": "forge:ingots/copper"
+    },
+    {
+      "tag": "forge:gems/phase_crystal"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "subspace:phase_alloy_ingot"
+  }
+}

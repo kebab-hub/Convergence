@@ -1,0 +1,10 @@
+{
+  "parent": "subspace:block/template/recessed_casing",
+  "textures": {
+    "side": "subspace:block/subspace_test_casing_side",
+    "top": "subspace:block/subspace_test_casing_top",
+    "front": "subspace:block/subspace_test_casing_front",
+    "frame": "subspace:block/subspace_test_casing_frame",
+    "core": "subspace:block/subspace_test_casing_core"
+  }
+}

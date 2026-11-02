@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "tag": "forge:ingots/copper"
+    },
+    "S": {
+      "tag": "subspace:stabilized_phase_crystals"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CSC",
+    " C "
+  ],
+  "result": {
+    "item": "subspace:resonance_coil"
+  }
+}
