@@ -20,9 +20,10 @@ without loading chunks; it has a crafting recipe, finished sprite, sound, and se
 The [Subspace Anchor](docs/ANCHOR.md) adds a persistent UUID address, active/inactive state, and a status
 screen with an activation control. Linked endpoint counts remain zero; there are no research systems,
 transport networks, pocket spaces, or portals yet.
-The [Subspace Interface](docs/INTERFACE.md) stores one direct target and probes sided item/fluid/energy
-capabilities through reusable Forge-based services. It reports availability and includes finished state
-models; it exposes no remote handler and transports no resources.
+The [Subspace Interface](docs/INTERFACE.md) pairs directly with another interface to expose its adjacent inventory
+through sided Forge item capabilities. Hoppers/pipes can insert and extract within a shared configurable
+item limit, with no chunk loading, recursive routes, fluid forwarding or energy forwarding. Its finished
+state models and transfer sparks show connection/activity.
 
 Planned mechanics:
 
@@ -92,15 +93,15 @@ Use a new development world for this restart. There is no migration of Convergen
 
 `build` includes `validateAssets`, which checks local model/texture references and animation/particle assets
 without launching Minecraft. It also runs `verifyDetectorSignal`, `verifyLinkerSelection`,
-`verifyAnchorIdentity`, and `verifyDirectLinks`: Java checks of readings, persistence, UUID synchronization,
-and sided capability invalidation/reacquisition without resource operations. GameTests are
+`verifyAnchorIdentity`, `verifyDirectLinks`, and `verifyItemTransfers`: Java checks of readings, persistence, UUID synchronization,
+sided capability invalidation/reacquisition, and 25,000 item-conservation cases with shared limits and recursion checks. GameTests are
 compiled by `build` and require a separate explicit server run. See the asset pipeline guide for optional Python authoring tools.
 
 ## Manual visual check
 
-Install `subspace-0.0.8.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Follow the interface's
-[manual checks](docs/INTERFACE.md#validation-and-owners-in-game-checks) for direct target configuration,
-sided availability, unload/reload, safe failure, no transport, and state models. Follow the anchor's
+Install `subspace-0.0.9.jar` in Minecraft 1.19.2 / Forge 43.5.2 using Java 17. Follow the interface's
+[manual checks](docs/INTERFACE.md#validation-and-owners-in-game-checks) for reciprocal pairing,
+sided item transfers, conservation/limits, unload/reload, safe failure, state models and transfer sparks. Follow the anchor's
 [manual checks](docs/ANCHOR.md#owners-in-game-checks) for persistent unique addresses, activation,
 the status screen, copied blocks, and visual effects. Follow the linker's
 [manual checks](docs/PHASE_LINKER.md#owners-in-game-checks) for endpoint selection, status, clearing,

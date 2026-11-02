@@ -2,6 +2,8 @@ package io.github.kebab_hub.subspace;
 
 import com.mojang.logging.LogUtils;
 import io.github.kebab_hub.subspace.common.registry.ModRegistries;
+import io.github.kebab_hub.subspace.common.config.SubspaceConfig;
+import net.minecraftforge.fml.config.ModConfig;
 import io.github.kebab_hub.subspace.data.SubspaceData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -15,6 +17,7 @@ public final class Subspace {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Subspace(FMLJavaModLoadingContext context) {
+        context.registerConfig(ModConfig.Type.SERVER, SubspaceConfig.SPEC);
         IEventBus modBus = context.getModEventBus();
         ModRegistries.register(modBus);
         modBus.addListener(SubspaceData::gatherData);

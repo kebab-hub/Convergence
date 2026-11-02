@@ -155,6 +155,16 @@ tasks.register('verifyDirectLinks', JavaExec) {
 }
 tasks.named('check').configure { dependsOn tasks.named('verifyDirectLinks') }
 
+tasks.register('verifyItemTransfers', JavaExec) {
+    group = 'verification'
+    description = 'Runs item conservation, simulation, shared limits and recursion checks without launching Minecraft.'
+    dependsOn tasks.named('testClasses')
+    classpath = files(sourceSets.test.output, sourceSets.main.output)
+    mainClass = 'io.github.kebab_hub.subspace.common.transport.ItemTransferChecks'
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
+}
+tasks.named('check').configure { dependsOn tasks.named('verifyItemTransfers') }
+
 jar {
     manifest {
         attributes([

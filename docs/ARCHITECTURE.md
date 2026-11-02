@@ -46,10 +46,13 @@ status, and zero linked endpoints, and validates local activation requests witho
 Client menu registration/screens are isolated under `client`; no routing or network membership is added.
 The interface composes `DirectLinkConfig`, `DirectLinkInspector`, and typed `CapabilityChannels`.
 Persistent addresses are separate from immutable `ConnectionSnapshot` diagnostics. Queries inspect only
-loaded target chunks and the selected side, retain no handlers, and never follow another direct-link host.
-The block's `connected` flag presents capability availability; it exposes no proxy or transport yet.
+loaded target chunks and the selected side. `DirectItemLink` resolves exactly one reciprocal peer and
+its adjacent inventory; `DirectItemHandler`, `ItemTransfer`, `TransferBudget` and `ItemCallGuard` provide
+revocable sided item access, conservation, paired limits and recursion rejection. Remote handlers are
+reacquired for each call. The `connected` flag and transfer sparks present item availability/activity.
+There is no fluid/energy forwarding or network routing; see the interface guide for limits and lifecycle.
 See [Asset Pipeline](ASSET_PIPELINE.md) for conventions and file validation. These implemented blocks/tools
-do not implement any transport or spatial system below.
+implement only direct paired item access; network transport and spatial systems below remain planned.
 
 ## Composition before machine classes
 

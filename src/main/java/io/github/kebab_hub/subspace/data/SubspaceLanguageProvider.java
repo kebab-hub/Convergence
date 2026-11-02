@@ -28,7 +28,7 @@ public final class SubspaceLanguageProvider extends LanguageProvider {
         add("tooltip.subspace.phase_linker.select", "Right-click a block: select its face");
         add("tooltip.subspace.phase_linker.status", "Right-click air: check saved endpoints");
         add("tooltip.subspace.phase_linker.clear", "Sneak-right-click air: clear endpoints");
-        add("tooltip.subspace.phase_linker.interface", "Sneak-use on Interface: apply endpoint A");
+        add("tooltip.subspace.phase_linker.interface", "Select inventory-port faces A/B; sneak-use each Interface to pair");
         add("tooltip.subspace.phase_linker.next_a", "Next: select endpoint A");
         add("tooltip.subspace.phase_linker.next_b", "Next: select endpoint B");
         add("tooltip.subspace.phase_linker.restart", "Pair recorded. Next selection starts a new A.");
@@ -66,13 +66,15 @@ public final class SubspaceLanguageProvider extends LanguageProvider {
         add("message.subspace.interface.target", "Target: %s [%s, %s, %s] - %s");
         add("message.subspace.interface.state", "Interface: %s");
         add("message.subspace.interface.channel", "%s: %s");
-        add("message.subspace.interface.available", "Detected on target side");
+        add("message.subspace.interface.available", "Remote inventory available");
         add("message.subspace.interface.unavailable", "Unavailable");
-        add("message.subspace.interface.help", "Linker: select A, then sneak-use on Interface. Empty-hand sneak-use: clear. No transport yet.");
+        add("message.subspace.interface.help", "Select inventory-port faces A/B with Linker; sneak-use BOTH Interfaces. Attach automation to other faces. Empty-hand sneak-use: clear.");
+        add("message.subspace.interface.limit", "Shared pair limit: %s items/tick (insert + extract). Fluids and energy unavailable.");
+        add("message.subspace.interface.visit_pair", "Sneak-use each of the two selected Interfaces to confirm the pair locally.");
         add("message.subspace.interface.cleared", "Interface target cleared.");
         add("message.subspace.interface.forbidden", "You cannot configure this interface here.");
         add("message.subspace.interface.select_a", "Select a valid endpoint A with the Phase Linker first.");
-        add("message.subspace.interface.invalid_link", "Self-links and links to another Interface are not supported.");
+        add("message.subspace.interface.invalid_link", "Cannot link an Interface to itself.");
         add("channel.subspace.items", "Item handler");
         add("channel.subspace.fluids", "Fluid handler");
         add("channel.subspace.energy", "Forge Energy");
@@ -87,6 +89,9 @@ public final class SubspaceLanguageProvider extends LanguageProvider {
         add("state.subspace.interface.chain_unsupported", "Interface chains are not supported");
         add("state.subspace.interface.unsupported", "No supported capabilities on target side");
         add("state.subspace.interface.capability_error", "Target capability query failed");
-        add("state.subspace.interface.ready", "Target available (transport not implemented)");
+        add("state.subspace.interface.expected_interface", "Target must be another Subspace Interface; select its inventory-port face");
+        add("state.subspace.interface.unpaired", "Partner does not point back here; confirm both ends with the Linker");
+        add("state.subspace.interface.local_port", "Local inventory port; connect automation to another face");
+        add("state.subspace.interface.ready", "Paired: remote item inventory available");
     }
 }

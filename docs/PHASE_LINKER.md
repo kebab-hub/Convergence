@@ -14,10 +14,11 @@ Hover over the tool to see both full addresses and the next action. Right-click 
 chat lines with the current availability of each saved endpoint. Sneak-right-click a block or air to
 clear the pair, except on a Subspace Interface as described below. A short four-tick cooldown prevents accidental rapid input.
 
-**Subspace Interface configuration:** sneak-right-click an [Interface](INTERFACE.md) to apply endpoint A
-as its single target. This preserves A/B on the tool and ignores B. It checks the target's capability
-availability but establishes no transport. Clear the interface separately with empty-hand sneak-use;
-clear the tool by sneak-right-clicking air. Normal right-click still selects A/B on interfaces.
+**Subspace Interface configuration:** select the local inventory-port face on two [Interfaces](INTERFACE.md),
+then sneak-use both selected interfaces to confirm a direct item pair. Each local interaction applies the
+other endpoint; the tool retains A/B. Attach inventories to those selected faces and automation to other
+faces. With only A selected, sneak-use still applies A as the local interface target. Clear an interface
+with empty-hand sneak-use, or clear the tool by sneak-right-clicking air. Normal use still records A/B.
 
 Successful selections produce violet sparks at the selected face and an amethyst chime; B uses a higher
 pitch. The item handles block selection before normal block interaction, so selecting a chest does not
